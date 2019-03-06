@@ -1,4 +1,5 @@
 #include <tuple>
+#include <algorithm>
 //The Road class with functions to handle all the updates related to the status of pixels on the road
 //everywhere in tuple, in accessign arrays first coordinate denotes y distance from top to bottom
 //second coordinate denotes x distance from left to right
@@ -30,6 +31,36 @@ public:
 
   void next_second()
   {
+    for (int i = road_length-1; i>-1; i--)
+    {
+      vector<Vehicle> considered_v;
+      for (int j = 0; j<road_width; j++)
+      {
+        if (this->road_map[j][i].display!=" ")
+        {
+          tuple<int,int> temp = (this->road_map[j][i].v->upper_right);
+          if (temp == make_tuple(j,i))
+          {
+            considered_v.push_back(this->road_map[j][i].v);
+          }
+        }
+      }
+
+      std::random_shuffle(considered_v.begin(), considered_v.end());
+
+      for (int k = 0; k<considered_v.size(); k++)
+      {
+        Vehicle *v = considered_v.get(k);
+        if (move_front(v->upper_right, v->length, v->width)==1)
+        {
+          do_move_front(v);
+        }
+        else if (lane_change(v->upper_right, v->length, v->width)!=0)
+        {
+          do_lane_change(v, lane_change(v->upper_right, v->length, v->width));
+        }
+      }
+    }
 
   }
 
@@ -53,19 +84,23 @@ public:
   int lane_change(tuple<int,int> upper_right, int length, int width)//only one pixel top or bottom
   {
     bool ans = 1;
-    tuple<int,int> down_right = make_tuple(get<0>(upper_right)+length-1,get<1>(upper_right));
-    int a = get<0>(down_right);
-    int b = get<1>(down_right);
+    //tuple<int,int> down_right = make_tuple(get<0>(upper_right)+length-1,get<1>(upper_right));
+    int a = get<0>(upper_right);
+    int b = get<1>(upper_right);
 
-    if (road_map[a][b+1].v!=NULL)
+    for (int j = 0; j < width; j++)
     {
-      ans = 2;
+      if (road_map[a+1+j][b+1].v!=NULL)
+      {
+        ans = 2;
+        break
+      }
     }
-    else
+    if (ans==1)
     {
       for (int i=0; i<length; i++)
       {
-        if (road_map[a+1][b+1-i].v!=NULL)
+        if (road_map[a+width][b+1-i].v!=NULL)
         {
           ans = 2;
           break;
@@ -73,16 +108,20 @@ public:
       }
     }
 
-    if (ans==1)
+    if (ans==2)
     {
-        int a = get<0>(upper_right);
-        int b = get<1>(upper_right);
+        //int a = get<0>(upper_right);
+        //int b = get<1>(upper_right);
 
-        if (road_map[a][b+1].v!=NULL)
+        for (int j = 0; j<width; j++)
         {
-          ans = 0;
+          if (road_map[a-1+j][b+1].v!=NULL)
+          {
+            ans = 0;
+          }
         }
-        else
+
+        if (ans==2)
         {
           for (int i=0; i<length; i++)
           {
@@ -98,9 +137,66 @@ public:
     return ans;
   }
 
-  void do_move_front();
+  void do_move_front(Vehicle *v)
+  {
+    int a = get<0>(upper_right);
+    int b = get<1>(upper_right);
 
-  void do_lane_change();
+    tuple<int,int> pos = make_tuple(a,b+1);
+    v->update(pos);
+
+    int c = a
+    int d = b - v->length +1;
+
+    for (int j=0; j<width; j++)
+    {
+      this->road_map[a+j][b+1].set_v(v);
+      this->road_map[c+j][d].set_v(NULL);
+    }
+  }
+
+  void do_lane_change(Vehicle *v, int r_or_l)
+  {
+    if (r_or_l == 1)
+    {
+      int a = get<0>(v->upper_right);
+      int b = get<1>(v->upper_right);
+
+      tuple<int,int> pos = make_tuple(a+1,b+1);
+      v->update(pos);
+
+      for (int j = 0; j < width; j++)
+      {
+        this->road_map[a+1+j][b+1].set_v(v);
+        this->road_map[a+j][b-length+1].set_v(NULL);
+      }
+
+      for (int i=0; i<length; i++)
+      {
+        this->road_map[a+width][b+1-i].set_v(v);
+        this->road_map[a][b-i].set_v(NULL);
+      }
+    }
+    else if (r_or_l == 2)
+    {
+      int a = get<0>(v->upper_right);
+      int b = get<1>(v->upper_right);
+
+      tuple<int,int> pos = make_tuple(a-1,b+1);
+      v->update(pos);
+
+      for (int j = 0; j<width; j++)
+      {
+        this->road_map[a-1+j][b+1].set_v(v);
+        this->road_map[a+j][b-length+1].set_v(NULL);
+      }
+      for (int i=0; i<length; i++)
+      {
+        this->road_map[a-1][b+1-i].set_v(v);
+        this->road_map[a+width-1][b-i].set_v(NULL);
+      }
+    }
+  };
 
   void on_screen()
   {
@@ -127,7 +223,14 @@ public:
   void set_v(Vehicle *v)
   {
     this->v = v;   //Is this the correct way to assign the pointer
-    this->display = *v.display;
+    if (v==NULL)
+    {
+      this->display = " ";
+    }
+    else
+    {
+      this->display = *v.display;
+    }
   }
 };
 
