@@ -8,7 +8,7 @@ private:
         int signal_distance;
 
 public:
-        
+
         Road(int len, int wid, int dist)
         {
                 length = len;
