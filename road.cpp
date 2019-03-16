@@ -8,7 +8,6 @@ private:
         int signal_distance;
 
 public:
-        vector<Vehicle> vehicles;
 
         Road(int len, int wid, int dist)
         {
