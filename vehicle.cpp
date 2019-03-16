@@ -21,7 +21,7 @@ private:
 
         //All vehicles will be spawned at the starting line.
 public:
-        Vehicle(Road *r, int len, int wid, string col, int max_sp, int acc, char disp, int i)
+        Vehicle(Road *r, int len, int wid, string col, int max_sp, int acc, char disp, int i, vector<int> position)
         {
                 road = r;
                 length = len;
@@ -30,8 +30,7 @@ public:
                 color=col;
                 max_speed=max_sp;
                 acceleration=acc;
-                pos.push_back(0);
-                pos.push_back(0);
+                pos = position;
                 velocity.push_back(max_sp);
                 velocity.push_back(0);
                 display = disp;
@@ -51,7 +50,7 @@ public:
         void set_acceleration(int acc) {acceleration=acc;}
         void set_pos(int x, int y) {pos[0]=x; pos[1]=y;}
         void set_velocity(int vx, int vy) {velocity[0]=vx; velocity[1]=vy;}
-        
+
         void update(int time_step)
         {
                 px=pos[0]+velocity[0]*time_step;
