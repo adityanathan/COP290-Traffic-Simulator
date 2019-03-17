@@ -5,7 +5,6 @@ using namespace std;
 class Vehicle
 {
 private:
-        Road *road;
         int length;
         int width;
         int id;
@@ -21,9 +20,8 @@ private:
 
         //All vehicles will be spawned at the starting line.
 public:
-        Vehicle(Road *r, int len, int wid, string col, int max_sp, int acc, char disp, int i, vector<int> position)
+        Vehicle(int len, int wid, string col, int max_sp, int acc, char disp, int i, vector<int> position)
         {
-                road = r;
                 length = len;
                 width = wid;
                 id = i;
@@ -35,6 +33,20 @@ public:
                 velocity.push_back(0);
                 display = disp;
                 is_accident = false;
+        }
+
+        Vehicle(const Vehicle &obj)
+        {
+                length = obj.length;
+                width = obj.width;
+                id = obj.id;
+                color = obj.color;
+                max_speed = obj.max_speed;
+                acceleration = obj.acceleration;
+                pos = obj.pos;
+                velocity = obj.velocity;
+                display = obj.display;
+                is_accident = obj.is_accident;
         }
         int get_length() {return length;}
         int get_width() {return width;}
@@ -53,8 +65,19 @@ public:
 
         void update(int time_step)
         {
-                px=pos[0]+velocity[0]*time_step;
-                py=pos[1]+velocity[1]*time_step;
                 vx=velocity[0]+acceleration*time_step;
+                if(vx<=0)
+                {
+                        acceleration=0;
+                        velocity[0]=0;
+                }
+                else if(vx>=max_speed)
+                {
+                        acceleration=0;
+                        velocity[0]=max_speed;
+                }
+                pos[0]=pos[0]+velocity[0]*time_step;
+                pos[1]=pos[1]+velocity[1]*time_step;
+
         }
 };

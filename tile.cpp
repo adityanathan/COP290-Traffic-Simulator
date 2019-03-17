@@ -7,7 +7,7 @@ public:
   Vehicle *v = NULL;
   bool is_signal=false;
 public:
-  pixel()
+  tile()
   {
     this->display=" ";
   }

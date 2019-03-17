@@ -1,4 +1,4 @@
-
+#include <cmath>
 #include <vector>
 using namespace std;
 
@@ -27,6 +27,11 @@ public:
                 c[0]=a[0]*b;
                 c[1]=a[1]*b;
                 return c;
+        }
+
+        static double vector_magnitude(vector<int> a)
+        {
+                return sqrt(a[0]*a[0]+a[1]*a[1]);
         }
 
         static vector<int> vector_component(vector<int> a, vector<int> direction_vector)
@@ -73,7 +78,7 @@ public:
                         t = (con2-s*sc2)/tc2;
                 }
 
-                if (t<0 || t>1)
+                if (t<0)
                 {
                         return a;
                 }
