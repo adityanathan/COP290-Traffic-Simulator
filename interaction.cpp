@@ -1,3 +1,6 @@
+#include "interaction.hpp"
+#include "vehicle.hpp"
+#include "road.hpp"
 #include <vector>
 #include "Collision.h"
 #include "Road.h"

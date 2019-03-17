@@ -1,3 +1,4 @@
+#include "vehicle.hpp"
 #include <vector>
 #include <string>
 using namespace std;
