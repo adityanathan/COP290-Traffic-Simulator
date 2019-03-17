@@ -1,7 +1,10 @@
 #ifndef interaction_h
 #define interaction_h
 
+class Road;
 #include "vehicle.hpp"
+#include "road.hpp"
+#include "collisions.hpp"
 #include "road.hpp"
 #include <vector>
 using namespace std;
@@ -9,17 +12,18 @@ using namespace std;
 class Interaction
 {
 private:
-        vector<Vehicle *> vehicles;
-        Road *road_map;
+        Road *road;
 
 public:
-        Interaction(vector<Vehicle *> v, Road *r)
+        Interaction(Road *r);
 
-        vector<Vehicle *> create_vehicle_list_copy(vector<Vehicle *> v)
+        vector<Vehicle *> create_vehicle_list_copy(vector<Vehicle *> v);
 
-        void collision_resolution(Vehicle *a, Vehicle *b)
+        void lane_change(Vehicle *a, Vehicle *b);
 
-        void update()
+        void collision_resolution(Vehicle *a, Vehicle *b);
+
+        vector<Vehicle *> update();
 
 
 };

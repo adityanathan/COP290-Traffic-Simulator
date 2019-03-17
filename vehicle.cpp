@@ -1,28 +1,9 @@
 #include "vehicle.hpp"
-#include <vector>
-#include <string>
 using namespace std;
 
-class Vehicle
-{
-private:
-        int length;
-        int width;
-        int id;
-        string color;
-        int max_speed;
-        int acceleration; //Make sure acceleration is not greater than max_speed.
-        vector<int> pos;
-        vector<int> velocity;
-        char display;
-        bool is_accident;
-        // In xml file when multiple vehicles are defined simultaneously, in the simulation they will
-        //side by side. If no of vehicles exceeds road width, it will throw an error.
-
-        //All vehicles will be spawned at the starting line.
-public:
-        Vehicle(int len, int wid, string col, int max_sp, int acc, char disp, int i, vector<int> position)
+        Vehicle::Vehicle(Road *r, int len, int wid, string col, int max_sp, int acc, char disp, int i, vector<int> position)
         {
+                rd = r;
                 length = len;
                 width = wid;
                 id = i;
@@ -36,8 +17,9 @@ public:
                 is_accident = false;
         }
 
-        Vehicle(const Vehicle &obj)
+        Vehicle::Vehicle(const Vehicle &obj)
         {
+                rd=obj.rd;
                 length = obj.length;
                 width = obj.width;
                 id = obj.id;
@@ -49,28 +31,28 @@ public:
                 display = obj.display;
                 is_accident = obj.is_accident;
         }
-        int get_length() {return length;}
-        int get_width() {return width;}
-        int get_id() {return id;}
-        string get_color() {return color;}
-        int get_max_speed() {return max_speed;}
-        int get_acceleration() {return acceleration;}
-        vector<int> get_pos() {return pos;}
-        vector<int> get_velocity() {return velocity;}
-        int get_display_char() {return display;}
-        int get_accident_truth() {return is_accident;}
+        int Vehicle::get_length() {return length;}
+        int Vehicle::get_width() {return width;}
+        int Vehicle::get_id() {return id;}
+        string Vehicle::get_color() {return color;}
+        int Vehicle::get_max_speed() {return max_speed;}
+        int Vehicle::get_acceleration() {return acceleration;}
+        vector<int> Vehicle::get_pos() {return pos;}
+        vector<int> Vehicle::get_velocity() {return velocity;}
+        int Vehicle::get_display_char() {return display;}
+        int Vehicle::get_accident_truth() {return is_accident;}
 
-        void set_acceleration(int acc) {acceleration=acc;}
-        void set_pos(int x, int y) {pos[0]=x; pos[1]=y;}
-        void set_velocity(int vx, int vy) {velocity[0]=vx; velocity[1]=vy;}
+        void Vehicle::set_acceleration(int acc) {acceleration=acc;}
+        void Vehicle::set_pos(int x, int y) {pos[0]=x; pos[1]=y;}
+        void Vehicle::set_velocity(vector<int> v) {velocity[0]=v[0]; velocity[1]=v[1];}
 
-        void update(int time_step)
+        void Vehicle::update(int time_step)
         {
                 if(acceleration>=max_speed)
                 {
                         acceleration=max_speed;
                 }
-                vx=velocity[0]+acceleration*time_step;
+                int vx=velocity[0]+acceleration*time_step;
                 if(vx<=0)
                 {
                         acceleration=0;
@@ -81,9 +63,18 @@ public:
                         acceleration=0;
                         velocity[0]=max_speed;
                 }
-                pos[0]=pos[0]+velocity[0]*time_step;
-                pos[1]=pos[1]+velocity[1]*time_step;
+
+                int px=pos[0]+velocity[0]*time_step;
+                int py=pos[1]+velocity[1]*time_step;
+                if(py>=rd->get_length())
+                {
+                        pos[1]=rd->get_length()-1;
+                }
+                else if(py<0)
+                {
+                        pos[1]=0;
+                }
+
                 velocity[1]=0;
 
         }
-};

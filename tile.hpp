@@ -1,5 +1,7 @@
 #ifndef tile_h
 #define tile_h
+
+class Vehicle;
 #include "vehicle.hpp"
 using namespace std;
 
@@ -10,12 +12,12 @@ public:
   Vehicle *v = NULL;
   bool is_signal=false;
 public:
-  tile()
+  tile();
 
   //To set the vehicle when pixel gets occupied
-        void set_v(Vehicle *vehicle)
+        void set_v(Vehicle *vehicle);
 
-        void set_signal()
+        void set_signal();
 };
 
 #endif

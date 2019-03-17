@@ -1,12 +1,16 @@
 #ifndef vehicle_h
 #define vehicle_h
+
+class Road;
 #include <vector>
 #include <string>
+#include "road.hpp"
 using namespace std;
 
 class Vehicle
 {
 private:
+        Road *rd;
         int length;
         int width;
         int id;
@@ -22,26 +26,26 @@ private:
 
         //All vehicles will be spawned at the starting line.
 public:
-        Vehicle(int len, int wid, string col, int max_sp, int acc, char disp, int i, vector<int> position)
+        Vehicle(Road *rd, int len, int wid, string col, int max_sp, int acc, char disp, int i, vector<int> position);
 
-        Vehicle(const Vehicle &obj)
+        Vehicle(const Vehicle &obj);
 
-        int get_length()
-        int get_width()
-        int get_id()
-        string get_color()
-        int get_max_speed()
-        int get_acceleration()
-        vector<int> get_pos()
-        vector<int> get_velocity()
-        int get_display_char()
-        int get_accident_truth()
+        int get_length();
+        int get_width();
+        int get_id();
+        string get_color();
+        int get_max_speed();
+        int get_acceleration();
+        vector<int> get_pos();
+        vector<int> get_velocity();
+        int get_display_char();
+        int get_accident_truth();
 
-        void set_acceleration(int acc)
-        void set_pos(int x, int y)
-        void set_velocity(int vx, int vy)
+        void set_acceleration(int acc);
+        void set_pos(int x, int y);
+        void set_velocity(vector<int> v);
 
-        void update(int time_step)
+        void update(int time_step);
 
 };
 #endif
