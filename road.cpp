@@ -6,10 +6,10 @@ private:
         int width;
         int signal_color;
         int signal_distance;
-        vector<vector<tile>> road_map;
 
 public:
-
+        vector<vector<tile>> road_map;
+        
         Road(int len, int wid, int dist)
         {
                 length = len;
@@ -38,6 +38,29 @@ public:
                                 }
                         }
                 }
+        }
+
+        void display()
+        {
+                update();
+
+                for(int i=0; i<width; i++)
+                {
+                        cout<<"-";
+                }
+                cout<<endl;
+                for(i=0; i<width; i++)
+                {
+                        for(int j=0; j<length; j++)
+                                cout<<road_map[i][j].display;
+                        cout<<endl;
+                }
+                for(i=0; i<width; i++)
+                {
+                        cout<<"-";
+                }
+                cout<<endl;
+                cout<<endl;
         }
 };
 //For vehicles and road.

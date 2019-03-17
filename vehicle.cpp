@@ -65,6 +65,10 @@ public:
 
         void update(int time_step)
         {
+                if(acceleration>=max_speed)
+                {
+                        acceleration=max_speed;
+                }
                 vx=velocity[0]+acceleration*time_step;
                 if(vx<=0)
                 {
@@ -78,6 +82,7 @@ public:
                 }
                 pos[0]=pos[0]+velocity[0]*time_step;
                 pos[1]=pos[1]+velocity[1]*time_step;
+                velocity[1]=0;
 
         }
 };

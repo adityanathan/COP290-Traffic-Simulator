@@ -18,13 +18,13 @@ public:
                 this->v = vehicle;
                 if ( v ) && (is_signal==false) // if v is not null and it is not a signal line.
                 {
-                        this->display = *v.display;
+                        this->display = v->get_display_char();
                 }
         }
 
         void set_signal()
         {
                 this->is_signal=true;
-                display
+                display="|";
         }
 };
