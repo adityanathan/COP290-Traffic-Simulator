@@ -9,7 +9,7 @@
 using namespace rapidxml;
 using namespace std;
 
-vector<vector<string > > parser(string config)
+void parser(string config)
 {
 	vector < vector < string> > ans;
 	cout << "Start" << endl;
@@ -28,7 +28,7 @@ vector<vector<string > > parser(string config)
 	int width = stoi(root_node->first_attribute("width")->value());
 	int dist = stoi(root_node->first_attribute("sig_dist")->value());
 
-	//Road road = Road(length,width,dist);
+	Road r = Road(length,width,dist);
 
 
 	string initial_color = ((root_node->first_node("signal"))->first_attribute("color")->value());
@@ -42,6 +42,8 @@ vector<vector<string > > parser(string config)
 	{
 		t_signal = 0;
 	}
+
+	r.set_sig_colour(t_signal);
 
 	vector<int> pos(2,0);
 
@@ -78,7 +80,7 @@ vector<vector<string > > parser(string config)
 
 
 	int next_x = 0;
-	int next_y = 1;
+	int next_y = width - 1;
 	int max_length = 0;
 	for (int i=0; i<sig_vehicles.size(); i++)
 	{
@@ -87,16 +89,16 @@ vector<vector<string > > parser(string config)
 
 			if (next_y + sig_vehicles[i][j].get_width() >= road.get_width())
 			{
-				next_y = 0;
+				next_y = width - 1;
 				next_x = next_x -max_length-1;
 				max_length = sig_vehicles[i][j].get_length();
 				sig_vehicles[i][j].set_pos(next_x, next_y);
-				next_y = next_y + sig_vehicles.get_width() +1;
+				next_y = next_y - sig_vehicles.get_width() - 1;
 			}
 			else
 			{
 				sig_vehicles[i][j].set_pos(next_x, next_y);
-				next_y = next_y + sig_vehicles.get_width() +1;
+				next_y = next_y - sig_vehicles.get_width() - 1;
 				if (sig_vehicles[i][j].get_length() > max_length)
 				{
 					max_length = sig_vehicles[i][j].get_length();
@@ -106,17 +108,21 @@ vector<vector<string > > parser(string config)
 		}
 	}
 
-	vector< vector <Vehicle> > on_road;
+	vector<Vehicle > on_road;
+	Interaction inter = Interaction(&r);
 	for (int i = 0; i < sig_vehicles.size(); i++)
 	{
 		for (int j = 0; j< sig_vehicles.size(); j++)
 		{
 			on_road.push_back(sig_vehicles[i][j]);
 		}
-
+		r.update(&on_road);
 		for (int k = 0; k< sig_time[i]; k++)
 		{
-			update();
+			//r.update(&on_road);
+			vector<Vehicle *> v_new = Interaction.update();
+			r.update(&on_road);
+			r.display();
 		}
 
 		t_signal = 1 - t_signal;
@@ -127,7 +133,5 @@ vector<vector<string > > parser(string config)
 
 int main(int argc, char *argv[])
 {
-	string b = "green";
-	string a = b;
-	cout<<(a=="green")<<endl;;
+	parser("XML_config.xml")
 }
