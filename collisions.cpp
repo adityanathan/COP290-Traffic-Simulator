@@ -1,5 +1,7 @@
 #include <cmath>
 #include <vector>
+#include "vehicle.hpp"
+#include "collisions.hpp"
 using namespace std;
 
 class Collisions

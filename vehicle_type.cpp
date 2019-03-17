@@ -1,3 +1,4 @@
+#include "vehicle_type.hpp"
 using namespace std;
 class Vehicle_Type
 {

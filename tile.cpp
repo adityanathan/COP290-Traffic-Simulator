@@ -1,3 +1,5 @@
+#include "tile.hpp"
+#include "vehicle.hpp"
 using namespace std;
 
 class tile
