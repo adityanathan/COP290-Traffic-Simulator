@@ -1,16 +1,24 @@
 #include "road.hpp"
 using namespace std;
 
-vector<vector<tile>> road_map;
-
 Road::Road(int len, int wid, int dist)
 {
         length = len;
         width = wid;
         signal_color = 0; //0 is RED and 1 is GREEN
         signal_distance = dist;
-        this->road_map.resize(wid, vector<tile>(len, tile()));
+        this->road_map.resize(wid, vector<char>(len, ' '));
 }
+
+// Road::Road(const Road &obj)
+// {
+//         length = obj.length;
+//         width = obj.width;
+//         signal_color = obj.signal_color; //0 is RED and 1 is GREEN
+//         signal_distance = obj.signal_distance;
+//         this->road_map = obj.road_map;
+// }
+
 int Road::get_length() {return length;}
 int Road::get_width() {return width;}
 int Road::get_sig_distance() {return signal_distance;}
@@ -18,9 +26,12 @@ int Road::get_signal_color() {return signal_color;}
 
 void Road::set_sig_colour(int col) {signal_color = col;}
 
+
+
 void Road::update(vector<Vehicle *> a)
 {
-        road_map.resize(width, vector<tile>(length, tile()));
+	vector<vector<char>> refresh(width,vector<char>(length,' '));
+        road_map = refresh;
         for(int i=0; i<a.size(); i++)
         {
                 for(int j=0;j<a[i]->get_width();j++)
@@ -31,29 +42,39 @@ void Road::update(vector<Vehicle *> a)
                                 int q = a[i]->get_pos()[1]-k;
                                 if(p>=0 && p<width && q>=0 && q<length)
                                 {
-                                        road_map[j][k].set_v(a[i]);
+                                        road_map[p][q]=a[i]->get_display_char();
                                 }
                         }
                 }
         }
+
+	if(signal_color==0)
+	{
+		for(int i=0; i<length;i++)
+		{
+			road_map[signal_distance][i]='|';
+		}
+	}
+
+	display();
 }
 
 void Road::display()
 {
         for(int i=0; i<width; i++)
         {
-                cout<<"-";
+                cout<<'-';
         }
         cout<<endl;
-        for(int i=0; i<width; i++)
+        for(int j=0; j<length; j++)
         {
-                for(int j=0; j<length; j++)
-                        cout<<road_map[i][j].display;
+                for(int i=0; i<width; i++)
+                        cout<<road_map[i][j];
                 cout<<endl;
         }
         for(int i=0; i<width; i++)
         {
-                cout<<"-";
+                cout<<'-';
         }
         cout<<endl;
         cout<<endl;

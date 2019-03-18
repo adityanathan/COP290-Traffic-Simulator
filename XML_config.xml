@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<road  id="1" length="30" width="5" default_acc="1" default_velocity="1" sig_dist="15">
+<road  id="1" length="30" width="5" default_acc="0" default_velocity="1" sig_dist="15">
 
   <signal end="15" color="red">
 

@@ -3,28 +3,13 @@
 
 class Road;
 #include "vehicle.hpp"
-#include "road.hpp"
 #include "collisions.hpp"
 #include "road.hpp"
 #include <vector>
 using namespace std;
 
-class Interaction
-{
-private:
-        Road *road;
+	void collision_resolution(int i, int j, vector<Vehicle *> vh);
 
-public:
-        Interaction(Road *r);
+	void interaction_update(Road* road, vector<Vehicle *> a);
 
-        vector<Vehicle *> create_vehicle_list_copy(vector<Vehicle *> v);
-
-        void lane_change(Vehicle *a, Vehicle *b);
-
-        void collision_resolution(Vehicle *a, Vehicle *b);
-
-        vector<Vehicle *> update();
-
-
-};
 #endif

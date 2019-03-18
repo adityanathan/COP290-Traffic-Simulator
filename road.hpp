@@ -1,10 +1,9 @@
 #ifndef road_h
 #define road_h
 
-class tile;
+class Vehicle;
 #include <vector>
 #include <iostream>
-#include "tile.hpp"
 #include "vehicle.hpp"
 using namespace std;
 class Road
@@ -16,7 +15,7 @@ private:
         int signal_distance;
 
 public:
-        vector<vector<tile>> road_map;
+        vector<vector<char>> road_map;
         Road(int len, int wid, int dist);
 
         int get_length();

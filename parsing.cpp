@@ -3,8 +3,9 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include "interaction.hpp"
 #include <algorithm>
-#include "/Users/poorvagarg/Downloads/rapidxml-1.13/rapidxml.hpp"
+#include "/home/aditya/rapidxml-1.13/rapidxml.hpp"
 
 using namespace rapidxml;
 using namespace std;
@@ -24,8 +25,8 @@ void parser(string config)
 	// Find our root node
 	root_node = doc.first_node("road");
 
-	int length = stoi(root_node->first_attribute("length")->value());
-	int width = stoi(root_node->first_attribute("width")->value());
+	int width = stoi(root_node->first_attribute("length")->value());
+	int length = stoi(root_node->first_attribute("width")->value());
 	int dist = stoi(root_node->first_attribute("sig_dist")->value());
 
 	Road r = Road(length,width,dist);
@@ -34,7 +35,7 @@ void parser(string config)
 	string initial_color = ((root_node->first_node("signal"))->first_attribute("color")->value());
 	int t_signal; //0 for red, 1 for green
 
-	if (strcmp(initial_color, "green")==0)
+	if (initial_color.compare("green")==0)
 	{
 		t_signal = 1;
 	}
@@ -52,21 +53,27 @@ void parser(string config)
 
 	for (xml_node<> * signal_node = root_node->first_node("signal"); signal_node; signal_node = signal_node->next_sibling())
 	{
-			sig_time.push_back(signal_node->first_attribute("end")->value());
-			vector<Vehicles> sig_v;
+		if (stoi(signal_node->first_attribute("end")->value())==-1)
+		{
+			sig_time.push_back(15);
+		}
+		else
+		{
+			sig_time.push_back(stoi(signal_node->first_attribute("end")->value()));
+		}
+		vector<Vehicle> sig_v;
 
 	    for(xml_node<> * vehicle_node = signal_node->first_node("vehicle"); vehicle_node; vehicle_node = vehicle_node->next_sibling())
 	    {
-				Vehicle v;
-				int len = stoi(vehicle_node->first_node("length")->value());
-				int wid = stoi(vehicle_node->first_node("width")->value());
+				int wid = stoi(vehicle_node->first_node("length")->value());
+				int len = stoi(vehicle_node->first_node("width")->value());
 				string col = vehicle_node->first_node("color")->value();
 				int max_v = stoi(vehicle_node->first_node("max_v")->value());
 				int acc = stoi(vehicle_node->first_node("acc")->value());
-				char disp = vehicle_node->first_node("display")->value().at(0);
-				int id = vehicles.size();
+				char disp = vehicle_node->first_node("display")->value()[0];
+				int id = sig_vehicles.size();
 
-				v = Vehicle(road, len, wid, col, max_v, acc, disp, id, pos);
+				Vehicle v(&r, len, wid, col, max_v, acc, disp, id, pos);
 				sig_v.push_back(v);
 	    }
 			sig_vehicles.push_back(sig_v);
@@ -80,49 +87,46 @@ void parser(string config)
 
 
 	int next_x = 0;
-	int next_y = width - 1;
+	int next_y = length - 1;
 	int max_length = 0;
 	for (int i=0; i<sig_vehicles.size(); i++)
 	{
 		for (int j = 0; j < sig_vehicles[i].size(); j++)
 		{
 
-			if (next_y + sig_vehicles[i][j].get_width() >= road.get_width())
+			if (next_y - sig_vehicles[i][j].get_length() <=0)
 			{
-				next_y = width - 1;
+				next_y = length - 1;
 				next_x = next_x -max_length-1;
-				max_length = sig_vehicles[i][j].get_length();
+				max_length = sig_vehicles[i][j].get_width();
 				sig_vehicles[i][j].set_pos(next_x, next_y);
-				next_y = next_y - sig_vehicles.get_width() - 1;
+				next_y = next_y - sig_vehicles[i][j].get_length() - 1;
 			}
 			else
 			{
 				sig_vehicles[i][j].set_pos(next_x, next_y);
-				next_y = next_y - sig_vehicles.get_width() - 1;
-				if (sig_vehicles[i][j].get_length() > max_length)
+				next_y = next_y - sig_vehicles[i][j].get_length() - 1;
+				if (sig_vehicles[i][j].get_width() > max_length)
 				{
-					max_length = sig_vehicles[i][j].get_length();
+					max_length = sig_vehicles[i][j].get_width();
 				}
 			}
 
 		}
 	}
 
-	vector<Vehicle > on_road;
-	Interaction inter = Interaction(&r);
+	vector<Vehicle *> on_road;
 	for (int i = 0; i < sig_vehicles.size(); i++)
 	{
-		for (int j = 0; j< sig_vehicles.size(); j++)
+		for (int j = 0; j< sig_vehicles[i].size(); j++)
 		{
-			on_road.push_back(sig_vehicles[i][j]);
+			on_road.push_back(&sig_vehicles[i][j]);
 		}
-		r.update(&on_road);
+		r.update(on_road);
 		for (int k = 0; k< sig_time[i]; k++)
 		{
 			//r.update(&on_road);
-			vector<Vehicle *> v_new = Interaction.update();
-			r.update(&on_road);
-			r.display();
+			interaction_update(&r, on_road);
 		}
 
 		t_signal = 1 - t_signal;
@@ -133,5 +137,5 @@ void parser(string config)
 
 int main(int argc, char *argv[])
 {
-	parser("XML_config.xml")
+	parser("XML_config.xml");
 }

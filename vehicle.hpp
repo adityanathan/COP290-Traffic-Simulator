@@ -5,6 +5,7 @@ class Road;
 #include <vector>
 #include <string>
 #include "road.hpp"
+#include <math.h>
 using namespace std;
 
 class Vehicle
@@ -44,8 +45,11 @@ public:
         void set_acceleration(int acc);
         void set_pos(int x, int y);
         void set_velocity(vector<int> v);
+	void set_velocity(int x, int y);
 
-        void update(int time_step);
+	bool can_go_left();
+	bool can_go_right();
+        void update();
 
 };
 #endif

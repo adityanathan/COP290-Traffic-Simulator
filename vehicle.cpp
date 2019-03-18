@@ -45,36 +45,71 @@ using namespace std;
         void Vehicle::set_acceleration(int acc) {acceleration=acc;}
         void Vehicle::set_pos(int x, int y) {pos[0]=x; pos[1]=y;}
         void Vehicle::set_velocity(vector<int> v) {velocity[0]=v[0]; velocity[1]=v[1];}
+	void Vehicle::set_velocity(int x, int y) {velocity[0]=x; velocity[1]=y;}
 
-        void Vehicle::update(int time_step)
+	bool Vehicle::can_go_left()
+	{
+		if(pos[1]>=rd->get_length())
+                {
+                        return false;
+                }
+		return true;
+	}
+
+	bool Vehicle::can_go_right()
+	{
+		if(pos[1]<0)
+                {
+                        return false;
+                }
+		return true;
+	}
+
+        void Vehicle::update()
         {
-                if(acceleration>=max_speed)
+		int acc=acceleration;
+                if(acc>max_speed)
                 {
-                        acceleration=max_speed;
+                        acc=max_speed;
                 }
-                int vx=velocity[0]+acceleration*time_step;
-                if(vx<=0)
+                int vx=velocity[0]+acc;
+		int vy=velocity[1];
+		int px=pos[0]+vx+floor(acc/2);
+                int py=pos[1]+vy;
+                if(vx<0)
                 {
-                        acceleration=0;
-                        velocity[0]=0;
+                        acc=0;
+                        vx=0;
                 }
-                else if(vx>=max_speed)
+                else if(vx>max_speed)
                 {
-                        acceleration=0;
-                        velocity[0]=max_speed;
+                        acc=0;
+                        vx=max_speed;
                 }
 
-                int px=pos[0]+velocity[0]*time_step;
-                int py=pos[1]+velocity[1]*time_step;
                 if(py>=rd->get_length())
                 {
-                        pos[1]=rd->get_length()-1;
+                        py=rd->get_length()-1;
+			vy=0;
+
                 }
                 else if(py<0)
                 {
-                        pos[1]=0;
+                        py=0;
+			vy=0;
                 }
 
+		pos[0]=px;
+		pos[1]=py;
+		velocity[0]=vx;
                 velocity[1]=0;
+		if(acc<0)
+		{
+			acceleration=0;
+		}
+		else
+		{
+			acceleration=acc;
+		}
 
         }
