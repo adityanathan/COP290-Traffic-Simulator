@@ -94,9 +94,17 @@ void parser(string config)
 		for (int j = 0; j < sig_vehicles[i].size(); j++)
 		{
 
-			if (next_y - sig_vehicles[i][j].get_length() <=0)
+			if (next_y - sig_vehicles[i][j].get_length() < 0)
 			{
-				next_y = length - 1;
+                if (i%2 == 0)
+                {
+                    next_y = length -2;
+                }
+                else
+                {
+                    next_y = length - 1;
+                }
+				
 				next_x = next_x -max_length-1;
 				max_length = sig_vehicles[i][j].get_width();
 				sig_vehicles[i][j].set_pos(next_x, next_y);
@@ -153,7 +161,14 @@ void parser(string config)
                 interaction_update(&r, on_road);
             }
         }
-		t_signal = 1 - t_signal;
+        if (sig_time[i+1] == -1)
+        {
+            t_signal = 1;
+        }
+        else
+        {
+            t_signal = 1 - t_signal;
+        }
 		r.set_sig_colour(t_signal);
 	}
 
