@@ -74,7 +74,7 @@ using namespace std;
                 }
                 int vx=velocity[0]+acc;
 		int vy=velocity[1];
-		int px=pos[0]+vx+floor(acc/2);
+		int px=pos[0]+vx;
                 int py=pos[1]+vy;
                 if(vx<0)
                 {

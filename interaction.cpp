@@ -147,19 +147,9 @@ void interaction_update(Road* road, vector<Vehicle *> a)
 			int velx = (a[i]->get_velocity()[0]);
 			int ax = floor(a[i]->get_acceleration()/2);
 			bool clause = (a[i]->get_pos()[0] < road->get_sig_distance()) && (a[i]->get_pos()[0]+velx+ax >=road->get_sig_distance());
-			if(rectangle_rectangle_collision_main(&signal,a[i]) || clause )
+			// if(rectangle_rectangle_collision_main(&signal,a[i]) || clause )
+			if(clause)
 			{
-				// int temp = (road->get_sig_distance() - a[i]->get_pos()[0] - 1);
-				// int acc;
-				// int velx = (a[i]->get_velocity()[0]);if(temp==0)
-				// {
-				// 	acc = velx;
-				// }
-				// else
-				// {
-				// 	acc = velx*velx/(2*temp);
-				// }
-				// a[i]->set_acceleration(-1*acc); //Signal collision resolution
 				sig_collision_truth[i]=true;
 				a[i]->set_pos(road->get_sig_distance()-1, a[i]->get_pos()[1]);
 				a[i]->set_velocity(0,0);
@@ -169,32 +159,48 @@ void interaction_update(Road* road, vector<Vehicle *> a)
 		}
 	}
 
-	bool is_collision;
-        for(int i=0;i<a.size()-1;i++)
+	vector<bool> is_collision(a.size(),false);
+        for(int i=0;i<a.size();i++)
         {
 
-                is_collision=false;
+                is_collision[i]=false;
                 for(int j=0;j<a.size();j++)
                 {
-			if(a[i]->get_pos()[0]<a[j]->get_pos()[0])
+			if(a[i]->get_pos()[0]<=a[j]->get_pos()[0] && i!=j)
+			if(rectangle_rectangle_collision_main(a[i],a[j]))
 			{
-				if(rectangle_rectangle_collision_main(a[i],a[j]))
 	                        {
 	                                collision_resolution(i,j,a);
-	                                is_collision=true;
+	                                is_collision[i]=true;
 	                        }
 			}
                 }
-
-		if(road->get_signal_color()==1)
-		{
-			// if (!(road->get_signal_color()==0 && (a[i]->get_pos()[0] + 1)==road->get_sig_distance()
-				int acc = a[i]->get_acceleration();
-				a[i]->set_acceleration(acc+1);
-		}
         }
 
-	////start from here
+	// for(int i=0; i<a.size(); i++)
+	// {
+	// 	int acc = a[i]->get_acceleration();
+	// 	bool check_collision_again=false;
+	// 	if(!is_collision[i] && !sig_collision_truth[i])
+	// 	{
+	// 		// if (!(road->get_signal_color()==0 && (a[i]->get_pos()[0] + 1)==road->get_sig_distance()
+	// 			a[i]->set_acceleration(acc+1);
+	// 			for(int j=0; j<a.size(); j++)
+	// 			{
+	// 				if(i!=j && rectangle_rectangle_collision_main(a[i],a[j]))
+	// 				{
+	// 		                        {
+	// 		                                check_collision_again=true;
+	// 		                        }
+	// 				}
+	// 			}
+	// 			if(check_collision_again)
+	// 			{
+	// 				a[i]->set_acceleration(acc);
+	// 			}
+	// 	}
+	// }
+
         for(int i=0; i<a.size(); i++)
         {
                 a[i]->update();
