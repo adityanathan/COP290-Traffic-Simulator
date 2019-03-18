@@ -128,9 +128,8 @@ void parser(string config)
 			//r.update(&on_road);
 			interaction_update(&r, on_road);
 		}
-
 		t_signal = 1 - t_signal;
-
+		r.set_sig_colour(t_signal);
 	}
 
 }
