@@ -5,7 +5,7 @@
 #include <vector>
 #include "interaction.hpp"
 #include <algorithm>
-#include "/home/aditya/rapidxml-1.13/rapidxml.hpp"
+#include "/Users/poorvagarg/Downloads/rapidxml-1.13/rapidxml.hpp"
 
 using namespace rapidxml;
 using namespace std;
@@ -53,14 +53,14 @@ void parser(string config)
 
 	for (xml_node<> * signal_node = root_node->first_node("signal"); signal_node; signal_node = signal_node->next_sibling())
 	{
-		if (stoi(signal_node->first_attribute("end")->value())==-1)
-		{
-			sig_time.push_back(15);
-		}
-		else
-		{
+//        if (stoi(signal_node->first_attribute("end")->value())==-1)
+//        {
+//            sig_time.push_back(15);
+//        }
+//        else
+//        {
 			sig_time.push_back(stoi(signal_node->first_attribute("end")->value()));
-		}
+//        }
 		vector<Vehicle> sig_v;
 
 	    for(xml_node<> * vehicle_node = signal_node->first_node("vehicle"); vehicle_node; vehicle_node = vehicle_node->next_sibling())
@@ -94,9 +94,17 @@ void parser(string config)
 		for (int j = 0; j < sig_vehicles[i].size(); j++)
 		{
 
-			if (next_y - sig_vehicles[i][j].get_length() <=0)
+			if (next_y - sig_vehicles[i][j].get_length() < 0)
 			{
-				next_y = length - 1;
+                if (i%2 == 0)
+                {
+                    next_y = length -2;
+                }
+                else
+                {
+                    next_y = length - 1;
+                }
+				
 				next_x = next_x -max_length-1;
 				max_length = sig_vehicles[i][j].get_width();
 				sig_vehicles[i][j].set_pos(next_x, next_y);
@@ -122,12 +130,45 @@ void parser(string config)
 		{
 			on_road.push_back(&sig_vehicles[i][j]);
 		}
-		for (int k = 0; k< sig_time[i]; k++)
-		{
-			//r.update(&on_road);
-			interaction_update(&r, on_road);
-		}
-		t_signal = 1 - t_signal;
+		r.update(on_road);
+        int iter = 0;
+        
+        //To end the program if end time is -1
+        if (sig_time[i]==-1)
+        {
+            bool road_empty = false;
+            while (road_empty == false)
+            {
+                interaction_update(&r, on_road);
+                road_empty = true;
+                for (int m = 0; m < r.road_map.size(); m++)
+                {
+                    for (int n = 0; n < r.road_map[0].size(); n++)
+                    {
+                        if ((r.road_map[m][n]) != ' ')
+                        {
+                            road_empty = false;
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            for (int k = 0; k< sig_time[i]; k++)
+            {
+                //r.update(&on_road);
+                interaction_update(&r, on_road);
+            }
+        }
+        if (sig_time[i+1] == -1)
+        {
+            t_signal = 1;
+        }
+        else
+        {
+            t_signal = 1 - t_signal;
+        }
 		r.set_sig_colour(t_signal);
 	}
 
