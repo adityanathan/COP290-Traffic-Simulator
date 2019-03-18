@@ -122,7 +122,6 @@ void parser(string config)
 		{
 			on_road.push_back(&sig_vehicles[i][j]);
 		}
-		r.update(on_road);
 		for (int k = 0; k< sig_time[i]; k++)
 		{
 			//r.update(&on_road);

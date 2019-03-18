@@ -54,7 +54,7 @@
       <display>C</display>    <!-- Type determines the character to be displayed on terminal-->
       <length>2</length>
       <width>2</width>
-      <max_v>1</max_v>
+      <max_v>3</max_v>
       <acc>1</acc>
     </vehicle>
 
@@ -64,7 +64,7 @@
       <display>b</display>    <!-- Type determines the character to be displayed on terminal-->
       <length>2</length>
       <width>1</width>
-      <max_v>1</max_v>
+      <max_v>4</max_v>
       <acc>1</acc>
     </vehicle>
 
@@ -74,7 +74,7 @@
       <display>T</display>    <!-- Type determines the character to be displayed on terminal-->
       <length>4</length>
       <width>2</width>
-      <max_v>1</max_v>
+      <max_v>2</max_v>
       <acc>1</acc>
     </vehicle>
 
