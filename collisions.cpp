@@ -57,29 +57,20 @@ bool rectangle_intersection(vector<int> pos1, vector<int> pos2, int length1, int
 	return false;
 }
 
-bool rectangle_rectangle_collision_main(Vehicle *a, Vehicle *b)
+bool rectangle_rectangle_collision_main(Vehicle *a, vector<vector<char>>)
 {
 	vector<int> a_velocity=a->get_velocity();
-	vector<int> b_velocity=b->get_velocity();
 
 	vector<int> a_pos=a->get_pos();
-	vector<int> b_pos=b->get_pos();
 
 	int a_length=a->get_length();
-	int b_length=b->get_length();
 
 	int a_width=a->get_width();
-	int b_width=b->get_width();
 
 	// vector<int> a_acc_add{(int) (a->get_acceleration()/2),0};
 	// vector<int> b_acc_add{(int) (b->get_acceleration()/2),0};
 
 	vector<int> a_new_pos=vector_add(a_pos,a_velocity);
-	vector<int> b_new_pos=vector_add(b_pos,b_velocity);
 
-	bool is_intersection = rectangle_intersection(a_new_pos,b_new_pos,a_length,b_length,a_width,b_width);
-
-	bool clause = (a_pos[0] < b_pos[0]) && (a_new_pos[0] >=b_new_pos[0]) && (a_pos[1]<=b_pos[1]) && (a_pos[1]>b_pos[1]-b_length);
-
-	return is_intersection || (!clause);
+	return is_intersection || (clause);
 }

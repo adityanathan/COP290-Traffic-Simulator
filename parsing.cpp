@@ -5,7 +5,7 @@
 #include <vector>
 #include "interaction.hpp"
 #include <algorithm>
-#include "/Users/poorvagarg/Downloads/rapidxml-1.13/rapidxml.hpp"
+#include "/home/aditya/rapidxml-1.13/rapidxml.hpp"
 
 using namespace rapidxml;
 using namespace std;
@@ -104,7 +104,7 @@ void parser(string config)
                 {
                     next_y = length - 1;
                 }
-				
+
 				next_x = next_x -max_length-1;
 				max_length = sig_vehicles[i][j].get_width();
 				sig_vehicles[i][j].set_pos(next_x, next_y);
@@ -132,14 +132,14 @@ void parser(string config)
 		}
 		r.update(on_road);
         int iter = 0;
-        
+
         //To end the program if end time is -1
         if (sig_time[i]==-1)
         {
             bool road_empty = false;
             while (road_empty == false)
             {
-                interaction_update(&r, on_road);
+                // interaction_update(&r, on_road, 20);
                 road_empty = true;
                 for (int m = 0; m < r.road_map.size(); m++)
                 {
@@ -155,11 +155,12 @@ void parser(string config)
         }
         else
         {
-            for (int k = 0; k< sig_time[i]; k++)
-            {
-                //r.update(&on_road);
-                interaction_update(&r, on_road);
-            }
+            // for (int k = 0; k< sig_time[i]; k++)
+            // {
+            //     //r.update(&on_road);
+            //     interaction_update(&r, on_road);
+            // }
+	    // interaction_update(&r, on_road, 20);
         }
         if (sig_time[i+1] == -1)
         {
@@ -171,7 +172,7 @@ void parser(string config)
         }
 		r.set_sig_colour(t_signal);
 	}
-
+	interaction_update(&r, on_road, 20);
 }
 
 int main(int argc, char *argv[])

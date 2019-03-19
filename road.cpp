@@ -8,6 +8,10 @@ Road::Road(int len, int wid, int dist)
         signal_color = 0; //0 is RED and 1 is GREEN
         signal_distance = dist;
         this->road_map.resize(wid, vector<char>(len, ' '));
+	for(int i=0; i<length;i++)
+	{
+		road_map[signal_distance][i]='|';
+	}
 }
 
 // Road::Road(const Road &obj)
@@ -42,7 +46,7 @@ void Road::update(vector<Vehicle *> a)
                                 int q = a[i]->get_pos()[1]-k;
                                 if(p>=0 && p<width && q>=0 && q<length)
                                 {
-                                        road_map[p][q]=a[i]->get_display_char();
+                                        road_map[p][length-1-q]=a[i]->get_display_char();
                                 }
                         }
                 }
@@ -55,8 +59,6 @@ void Road::update(vector<Vehicle *> a)
 			road_map[signal_distance][i]='|';
 		}
 	}
-
-	display();
 }
 
 void Road::display()
@@ -76,8 +78,6 @@ void Road::display()
         {
                 cout<<'-';
         }
-        cout<<endl;
-        cout<<endl;
 }
 //For vehicles and road.
 //  width w

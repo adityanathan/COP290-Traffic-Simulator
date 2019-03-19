@@ -3,13 +3,13 @@
 
 class Road;
 #include "vehicle.hpp"
-#include "collisions.hpp"
 #include "road.hpp"
 #include <vector>
+#include <time.h>
 using namespace std;
 
-	void collision_resolution(int i, int j, vector<Vehicle *> vh);
+	vector<int> check_movable_zone(Vehicle a,vector<vector<char>> rd);
 
-	void interaction_update(Road* road, vector<Vehicle *> a);
+	void interaction_update(Road *r, vector<Vehicle *> a, int sig_time);
 
 #endif
