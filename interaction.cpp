@@ -16,7 +16,7 @@ vector<int> check_movable_zone(Vehicle a,vector<vector<char>> rd)
 	bool is_signal=false;
 	int m;
 	// for(int i=x_new_pos; i>x_new_pos - width; i--)
-	cout << x_pos << " " << x_new_pos << endl;
+	// cout << x_pos << " " << x_new_pos << endl;
 	for(int i=x_pos+1; i<=x_new_pos; i++)
 
 	{
@@ -29,14 +29,11 @@ vector<int> check_movable_zone(Vehicle a,vector<vector<char>> rd)
 				if(rd[i][rd_width-j]!=' ')
 				{
 					m=i-1;
+					lane_change=0;
 					if(rd[i][rd_width-j]=='|')
 					{
 						is_signal=true;
 						break;
-					}
-					else
-					{
-						lane_change=0;
 					}
 				}
 			}
@@ -128,7 +125,7 @@ vector<int> check_movable_zone(Vehicle a,vector<vector<char>> rd)
 
 }
 
-void interaction_update(Road *r, vector<Vehicle *> a, int sig_time)
+void interaction_update(Road *r, vector<Vehicle *> a, vector<int> sig_time)
 {
 
 	//////To be removed after poorva alters code.
@@ -154,6 +151,7 @@ void interaction_update(Road *r, vector<Vehicle *> a, int sig_time)
 	bool road_empty=false;
 	int vehicle_counter=a.size()-1;
 	int time_step=0;
+	int sig_time_counter=0;
 	while(!road_empty)
 	{
 		int road_length=r->get_length();
@@ -283,16 +281,16 @@ void interaction_update(Road *r, vector<Vehicle *> a, int sig_time)
 		// 	a[i]->set_velocity(list[i].get_velocity());
 		// 	a[i]->set_pos(list[i].get_pos()[0],list[i].get_pos()[1]);
 		// }
-
-		time_step++;
-		cout<<"Time step = "<<time_step<<endl<<endl;
-		if(time_step==sig_time)
-		{
-			r->set_sig_colour(1);
-		}
 		r->update(a);
 		r->display();
 		cout<<endl;
+		time_step++;
+		cout<<"Time step = "<<time_step<<endl<<endl;
+		if(time_step==sig_time[sig_time_counter] && sig_time_counter<sig_time.size())
+		{
+			r->set_sig_colour(1-r->get_signal_color());
+			sig_time_counter++;
+		}
 		road_empty=true;
 		for(int i=0;i<road_width;i++)
 		{

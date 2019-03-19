@@ -10,6 +10,6 @@ using namespace std;
 
 	vector<int> check_movable_zone(Vehicle a,vector<vector<char>> rd);
 
-	void interaction_update(Road *r, vector<Vehicle *> a, int sig_time);
+	void interaction_update(Road *r, vector<Vehicle *> a, vector<int> sig_time);
 
 #endif

@@ -14,15 +14,6 @@ Road::Road(int len, int wid, int dist)
 	}
 }
 
-// Road::Road(const Road &obj)
-// {
-//         length = obj.length;
-//         width = obj.width;
-//         signal_color = obj.signal_color; //0 is RED and 1 is GREEN
-//         signal_distance = obj.signal_distance;
-//         this->road_map = obj.road_map;
-// }
-
 int Road::get_length() {return length;}
 int Road::get_width() {return width;}
 int Road::get_sig_distance() {return signal_distance;}
