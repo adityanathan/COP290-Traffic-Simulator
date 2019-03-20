@@ -15,121 +15,121 @@
     <Vehicles>
         <vehicle>
             <type>Car</type>
-            <color>010</color>
+            <color>595</color>
             <display>C</display>
             <length>2</length>
             <width>2</width>
-	    <height>2</height>
+	    <height>1</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Car</type>
-            <color>010</color>
+            <color>595</color>
             <display>C</display>
             <length>2</length>
             <width>2</width>
-	    <height>2</height>
+	    <height>1</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Bike</type>
-            <color>001</color>
+            <color>559</color>
             <display>b</display>
             <length>2</length>
             <width>1</width>
-	    <height>2</height>
+	    <height>1</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Bike</type>
-            <color>010</color>
+            <color>595</color>
             <display>b</display>
             <length>2</length>
             <width>1</width>
-	    <height>2</height>
+	    <height>1</height>
  	    <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Bike</type>
-            <color>010</color>
+            <color>595</color>
             <display>b</display>
             <length>2</length>
             <width>1</width>
-	    <height>2</height>
+	    <height>1</height>
 	    <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Bike</type>
-            <color>010</color>
+            <color>595</color>
             <display>b</display>
             <length>2</length>
             <width>1</width>
-	    <height>2</height>
+	    <height>1</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Bus</type>
-            <color>001</color>
+            <color>559</color>
             <display>B</display>
             <length>3</length>
             <width>2</width>
-	    <height>2</height>
+	    <height>1</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Car</type>        <!-- Type is for description in openGL-->
-            <color>010</color>
+            <color>595</color>
             <display>C</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>2</length>
             <width>2</width>
-	    <height>2</height>
+	    <height>1</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Bike</type>        <!-- Type is for description in openGL-->
-            <color>001</color>
+            <color>559</color>
             <display>b</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>2</length>
             <width>1</width>
-	    <height>2</height>
+	    <height>1</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Truck</type>        <!-- Type is for description in openGL-->
-            <color>010</color>
+            <color>595</color>
             <display>T</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>4</length>
             <width>2</width>
-	    <height>2</height>
+	    <height>1</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Bus</type>        <!-- Type is for description in openGL-->
-            <color>100</color>
+            <color>955</color>
             <display>B</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>3</length>
             <width>2</width>
-	    <height>2</height>
+	    <height>1</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>

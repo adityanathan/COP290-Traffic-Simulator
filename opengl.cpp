@@ -3,9 +3,27 @@
 #include <GL/glu.h>	// Header File For The GLu32 Library
 #include <unistd.h>     // needed to sleep
 #include <string>
-#include<iostream>
+#include <iostream>
 #include "road.hpp"
 #include "vehicle.hpp"
+#include "interaction.hpp"
+
+////parser
+#include <string.h>
+#include <stdio.h>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+#include "/home/aditya/rapidxml-1.13/rapidxml.hpp"
+
+using namespace rapidxml;
+using namespace std;
+
+
+
+////
+
+
 /* ASCII code for the escape key. */
 #define ESCAPE 27
 #define SPACE 32
@@ -298,10 +316,10 @@ void draw_cube(float px, float py, float length, float width, float height, stri
 	float col_r = ((1.0)*(rgb%10))/10;
 	// cout<<col_r<<endl;
 
-	glTranslatef((1.0f)*(px-width+1), (1.0f)*py, -90.0f); // (z,y,x)
+	glTranslatef((1.0f)*(px-width+1), (1.0f)*py, -70.0f); // (z,y,x) //(-20,-20,-50)
 	//glTranslatef(0.0f, 0.0f, -12.0f); // (z,y,x)
-	glRotatef(45.0f,0.0f,1.0f,0.0f);
-	glRotatef(30.0f,1.0f,0.0f,1.0f);
+	glRotatef(-45.0f,1.0f,0.0f,0.0f);
+	//glRotatef(30.0f,0.0f,0.0f,1.0f);
 	// draw a cube (6 quadrilaterals)
         glBegin(GL_QUADS);				// start drawing the cube.
 	//top of cube
@@ -406,7 +424,7 @@ void DrawGLScene()
 	if(!road_empty)
 	{
 		road_empty=true;
-		vector<Vehicle *> a = interaction_update(&r,vehicles,sig_time); //redundant. a is not necessary. but kept for readability
+		vector<Vehicle *> a = interaction_update(r,vehicles,sig_time); //redundant. a is not necessary. but kept for readability
 		r->display();
 		for(int i=0;i<r->get_width();i++)
 		{
@@ -423,19 +441,31 @@ void DrawGLScene()
 		cout<<"Time step = "<<time_step<<endl<<endl;
 		if(time_step==sig_time[sig_time_counter] && sig_time_counter<sig_time.size())
 		{
-			r.set_sig_colour(1-r.get_signal_color());
+			r->set_sig_colour(1-r->get_signal_color());
 			sig_time_counter++;
 		}
 
 		for(int i=0;i<a.size();i++)
 		{
-			draw_cube(a->get_pos()[0],a->get_pos()[1],a->get_length(),a->get_width(),a->get_height(),a->get_color());
+			int px = a[i]->get_pos()[0];
+			int py = a[i]->get_pos()[1];
+			int length = a[i]->get_length();
+			int width = a[i]->get_width();
+			int height = a[i]->get_height();
+			string col=a[i]->get_color();
+			if(px>=0 && px<r->get_width())
+			{
+				draw_cube(px,py,length,width,height,col);
+				glLoadIdentity();
+			}
 		}
 	}
 
+	draw_cube(r->get_width(),r->get_length(),r->get_length(),r->get_width(),0,"090");
 
 
-	draw_cube(1,1,10,10,10,"500");
+
+	// draw_cube(1,1,10,10,10,"500");
 	glutSwapBuffers();
 }
 
@@ -477,7 +507,8 @@ int main(int argc, char **argv)
 	int length = stoi(root_node->first_attribute("width")->value());
 	int dist = stoi(root_node->first_attribute("sig_dist")->value());
 
-	r = &Road(length,width,dist);
+	Road rd(length,width,dist);
+	r=&rd;
 
 	//sees the initial colour for the signal;
 	string initial_color = ((root_node->first_node("signals"))->first_attribute("initial_color")->value());
@@ -521,7 +552,7 @@ int main(int argc, char **argv)
 	char disp = vehicle_node->first_node("display")->value()[0];
 	int id = sig_vehicles.size();
 
-	Vehicle v(&r, len, wid, height, col, max_v, acc, disp, id, pos);
+	Vehicle v(r, len, wid, height, col, max_v, acc, disp, id, pos);
 	sig_vehicles.push_back(v);
 	}
 	for(int i=0;i<sig_vehicles.size();i++)

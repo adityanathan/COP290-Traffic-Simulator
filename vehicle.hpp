@@ -5,7 +5,6 @@ class Road;
 #include <vector>
 #include <string>
 #include "road.hpp"
-#include <math.h>
 using namespace std;
 
 class Vehicle
