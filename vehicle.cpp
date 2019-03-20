@@ -1,11 +1,12 @@
 #include "vehicle.hpp"
 using namespace std;
 
-        Vehicle::Vehicle(Road *r, int len, int wid, string col, int max_sp, int acc, char disp, int i, vector<int> position)
+        Vehicle::Vehicle(Road *r, int len, int wid, int h, string col, int max_sp, int acc, char disp, int i, vector<int> position)
         {
                 rd = r;
                 length = len;
                 width = wid;
+		height=h;
                 id = i;
                 color=col;
                 max_speed=max_sp;
@@ -22,6 +23,7 @@ using namespace std;
                 rd=obj.rd;
                 length = obj.length;
                 width = obj.width;
+		height = obj.height;
                 id = obj.id;
                 color = obj.color;
                 max_speed = obj.max_speed;
@@ -33,6 +35,7 @@ using namespace std;
         }
         int Vehicle::get_length() {return length;}
         int Vehicle::get_width() {return width;}
+	int Vehicle::get_height() {return height;}
         int Vehicle::get_id() {return id;}
         string Vehicle::get_color() {return color;}
         int Vehicle::get_max_speed() {return max_speed;}

@@ -1,0 +1,137 @@
+int road_length=r->get_length();
+int road_width=r->get_width();
+vector<vector<char>> *road_map = &r->road_map;
+bool is_start_line_empty=true;
+for(int i=0;i<road_length;i++)
+{
+	if((*road_map)[0][i]!=' ')
+	{
+		is_start_line_empty=false;
+		break;
+	}
+}
+if(is_start_line_empty && vehicle_counter>=0)
+{
+	int start_point=r->get_length()-1;
+	while(vehicle_counter>=0)
+	{
+		a[vehicle_counter]->set_pos(0,start_point);
+		if(start_point-a[vehicle_counter]->get_length()+1<0)
+		{
+			a[vehicle_counter]->set_pos(-1,-1);
+			break;
+		}
+
+		start_point=start_point - a[vehicle_counter]->get_length() - (3-(rand()%3));
+		vehicle_counter--;
+	}
+}
+r->update(a);
+vector<Vehicle> list;
+for(int i=0; i<a.size(); i++)
+{
+	list.push_back(*a[i]);
+}
+for(int i=0;i<a.size();i++)
+{
+	if(a[i]->get_pos()[1]!=-1)
+	{
+		// Vehicle cur=*a[i];
+		Vehicle cur = list[i];
+		int signal_distance=r->get_sig_distance();
+		int max=0;
+		int x = cur.get_pos()[0];
+		if(x<signal_distance/3 && r->get_signal_color()==0)
+		{
+			max=cur.get_max_speed();
+		}
+		else if(x<2*signal_distance/3 && r->get_signal_color()==0)
+		{
+			max=cur.get_max_speed()/2;
+		}
+		else if(x<signal_distance && r->get_signal_color()==0)
+		{
+			max=cur.get_max_speed()/3;
+		}
+		else if(r->get_signal_color()==1)
+		{
+			max=cur.get_max_speed();
+		}
+		if(max==0)
+		{
+			max=1;
+		}
+		if(cur.get_acceleration() >= max)
+		{
+			cur.set_acceleration(0);
+			cur.set_velocity(max,0);
+		}
+		else
+		{
+			int temp_ax = cur.get_acceleration()+1;
+			int temp_vx = temp_ax+cur.get_velocity()[0];
+			if(temp_vx>max)
+			{
+				temp_vx=max;
+				temp_ax=0;
+			}
+			cur.set_acceleration(temp_ax);
+			cur.set_velocity(temp_vx,0);
+		}
+
+		vector<int> option = check_movable_zone(cur, *road_map);
+		// cout<<option[0]<<" "<<option[1]<<" "<<(char)cur.get_display_char()<<" "<<cur.get_velocity()[0]<<" "<<cur.get_pos()[0]<<" "<<cur.get_pos()[1]<<endl;
+		if(option[1] == 5)
+		{
+			a[i]->set_velocity(cur.get_velocity());
+			a[i]->set_acceleration(cur.get_acceleration());
+			int px = cur.get_pos()[0]+cur.get_velocity()[0];
+			int py = cur.get_pos()[1];
+			a[i]->set_pos(px,py);
+			// r->update(a);
+		}
+		else if(option[1] == 4)
+		{
+			a[i]->set_velocity(0,0);
+			a[i]->set_acceleration(0);
+			int px = option[0];
+			int py = cur.get_pos()[1];
+			a[i]->set_pos(px,py);
+			// r->update(a);
+		}
+		else if (option[1] == 0)
+		{
+			a[i]->set_velocity(cur.get_velocity());
+			a[i]->set_acceleration(0);
+			int px = option[0];
+			int py = cur.get_pos()[1];
+			a[i]->set_pos(px,py);
+		}
+		else if(option[1] == -1 || option[1] == 1)
+		{
+			a[i]->set_velocity(cur.get_velocity());
+			a[i]->set_acceleration(cur.get_acceleration());
+			int px = option[0];
+			int py = cur.get_pos()[1]+option[1];
+			a[i]->set_pos(px,py);
+			// r->update(a);
+		}
+	}
+}
+
+// for(int i=0; i<a.size();i++)
+// {
+// 	a[i]->set_acceleration(list[i].get_acceleration());
+// 	a[i]->set_velocity(list[i].get_velocity());
+// 	a[i]->set_pos(list[i].get_pos()[0],list[i].get_pos()[1]);
+// }
+r->update(a);
+r->display();
+cout<<endl;
+time_step++;
+cout<<"Time step = "<<time_step<<endl<<endl;
+if(time_step==sig_time[sig_time_counter] && sig_time_counter<sig_time.size())
+{
+	r->set_sig_colour(1-r->get_signal_color());
+	sig_time_counter++;
+}

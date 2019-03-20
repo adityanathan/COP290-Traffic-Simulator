@@ -14,6 +14,7 @@ private:
         Road *rd;
         int length;
         int width;
+	int height;
         int id;
         string color;
         int max_speed;
@@ -27,12 +28,13 @@ private:
 
         //All vehicles will be spawned at the starting line.
 public:
-        Vehicle(Road *rd, int len, int wid, string col, int max_sp, int acc, char disp, int i, vector<int> position);
+        Vehicle(Road *rd, int len, int wid, int h, string col, int max_sp, int acc, char disp, int i, vector<int> position);
 
         Vehicle(const Vehicle &obj);
 
         int get_length();
         int get_width();
+	int get_height();
         int get_id();
         string get_color();
         int get_max_speed();

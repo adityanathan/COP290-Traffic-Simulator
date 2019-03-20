@@ -7,116 +7,129 @@
             </signal>
         <signal time = "20">
             </signal>
-        </signals>
+	<signal time = "35">
+	</signal>
+</signals>
 
 
     <Vehicles>
         <vehicle>
             <type>Car</type>
-            <color>Green</color>
+            <color>010</color>
             <display>C</display>
             <length>2</length>
             <width>2</width>
+	    <height>2</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Car</type>
-            <color>Green</color>
+            <color>010</color>
             <display>C</display>
             <length>2</length>
             <width>2</width>
+	    <height>2</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Bike</type>
-            <color>Blue</color>
+            <color>001</color>
             <display>b</display>
             <length>2</length>
             <width>1</width>
+	    <height>2</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Bike</type>
-            <color>Green</color>
+            <color>010</color>
             <display>b</display>
             <length>2</length>
             <width>1</width>
-            <max_v>1</max_v>
+	    <height>2</height>
+ 	    <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Bike</type>
-            <color>Green</color>
+            <color>010</color>
             <display>b</display>
             <length>2</length>
             <width>1</width>
-            <max_v>1</max_v>
+	    <height>2</height>
+	    <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Bike</type>
-            <color>Green</color>
+            <color>010</color>
             <display>b</display>
             <length>2</length>
             <width>1</width>
+	    <height>2</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Bus</type>
-            <color>Blue</color>
+            <color>001</color>
             <display>B</display>
             <length>3</length>
             <width>2</width>
+	    <height>2</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Car</type>        <!-- Type is for description in openGL-->
-            <color>Green</color>
+            <color>010</color>
             <display>C</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>2</length>
             <width>2</width>
+	    <height>2</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Bike</type>        <!-- Type is for description in openGL-->
-            <color>Blue</color>
+            <color>001</color>
             <display>b</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>2</length>
             <width>1</width>
+	    <height>2</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Truck</type>        <!-- Type is for description in openGL-->
-            <color>Green</color>
+            <color>010</color>
             <display>T</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>4</length>
             <width>2</width>
+	    <height>2</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Bus</type>        <!-- Type is for description in openGL-->
-            <color>Blue</color>
+            <color>100</color>
             <display>B</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>3</length>
             <width>2</width>
+	    <height>2</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
