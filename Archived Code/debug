@@ -1,3 +1,0 @@
-break interaction.cpp:179 if i==1
-
-g++ main.cpp -o firstOpenGlApp -lglut -lGLU -lGL

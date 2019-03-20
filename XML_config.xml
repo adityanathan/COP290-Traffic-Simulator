@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<road  id="1" length="30" width="5" default_acc="0" default_velocity="1" sig_dist="15">
+<road  id="1" length="40" width="10" default_acc="0" default_velocity="1" sig_dist="15">
 
     <signals initial_color = "red">
         <signal time = "15">
@@ -30,7 +30,7 @@
             <display>C</display>
             <length>2</length>
             <width>2</width>
-	    <height>1</height>
+	    <height>2</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
@@ -40,7 +40,7 @@
             <color>559</color>
             <display>b</display>
             <length>2</length>
-            <width>1</width>
+            <width>2</width>
 	    <height>1</height>
             <max_v>1</max_v>
             <acc>1</acc>
@@ -51,7 +51,7 @@
             <color>595</color>
             <display>b</display>
             <length>2</length>
-            <width>1</width>
+            <width>2</width>
 	    <height>1</height>
  	    <max_v>1</max_v>
             <acc>1</acc>
@@ -62,7 +62,7 @@
             <color>595</color>
             <display>b</display>
             <length>2</length>
-            <width>1</width>
+            <width>2</width>
 	    <height>1</height>
 	    <max_v>1</max_v>
             <acc>1</acc>
@@ -73,7 +73,7 @@
             <color>595</color>
             <display>b</display>
             <length>2</length>
-            <width>1</width>
+            <width>2</width>
 	    <height>1</height>
             <max_v>1</max_v>
             <acc>1</acc>
@@ -106,7 +106,7 @@
             <color>559</color>
             <display>b</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>2</length>
-            <width>1</width>
+            <width>2</width>
 	    <height>1</height>
             <max_v>1</max_v>
             <acc>1</acc>

@@ -305,77 +305,62 @@ vector<Vehicle *> interaction_update(Road *r, vector<Vehicle *> a, vector<int> s
 
 void draw_cube(float px, float py, float length, float width, float height, string col)
 {
-
 	int rgb=stoi(col);
 	float col_b = ((1.0)*(rgb%10))/10;
-	// cout<<col_b<<endl;
 	rgb=rgb/10;
 	float col_g = ((1.0)*(rgb%10))/10;
-	// cout<<col_g<<endl;
 	rgb=rgb/10;
 	float col_r = ((1.0)*(rgb%10))/10;
-	// cout<<col_r<<endl;
 
-	glTranslatef((1.0f)*(px-width+1), (1.0f)*py, -70.0f); // (z,y,x) //(-20,-20,-50)
-	//glTranslatef(0.0f, 0.0f, -12.0f); // (z,y,x)
+	glLoadIdentity();
+	glTranslatef(-10.0f, -10.0f, -40.0f);
 	glRotatef(-45.0f,1.0f,0.0f,0.0f);
-	//glRotatef(30.0f,0.0f,0.0f,1.0f);
-	// draw a cube (6 quadrilaterals)
+	glRotatef(45.0f,0.0f,0.0f,1.0f);
         glBegin(GL_QUADS);				// start drawing the cube.
 	//top of cube
-	glColor3f(col_r*1.0f,col_g*1.0f,col_b*1.0f);			// Set The Color To Blue
-	glVertex3f((width-1)*1.0f,-(length-1)*1.0f, height*1.0f);		// Top Right Of The Quad (Top)
-	glVertex3f((width-1)*1.0f,0.0f, height*1.0f);		// Top Left Of The Quad (Top)
-	glVertex3f(0.0f,0.0f,height*1.0f);		// Bottom Left Of The Quad (Top)
-	glVertex3f( 0.0f,-(length-1)*1.0f,height*1.0f);		// Bottom Right Of The Quad (Top)
+		glColor3f(col_r*1.0f,col_g*1.0f,col_b*1.0f);			// Set The Color To Blue
+		glVertex3f(px*1.0f,py-(length-1)*1.0f, height*1.0f);		// Top Right Of The Quad (Top)
+		glVertex3f(px*1.0f,py*1.0f, height*1.0f);		// Top Left Of The Quad (Top)
+		glVertex3f((px - (width-1))*1.0f,py*1.0f,height*1.0f);		// Bottom Left Of The Quad (Top)
+		glVertex3f( (px - (width-1))*1.0f,py-(length-1)*1.0f,height*1.0f);		// Bottom Right Of The Quad (Top)
 
-	// bottom of cube
-	glColor3f(col_r*0.95f,col_g*0.95f,col_b*0.95f);			// Set The Color To Blue
-	glVertex3f((width-1)*1.0f,-(length-1)*1.0f, 0.0f);		// Top Right Of The Quad (Bottom)
-	glVertex3f((width-1)*1.0f,0.0f, 0.0f);		// Top Left Of The Quad (Bottom)
-	glVertex3f(0.0f,0.0f,0.0f);		// Bottom Left Of The Quad (Bottom)
-	glVertex3f( 0.0f,-(length-1)*1.0f,0.0f);		// Bottom Right Of The Quad (Bottom)
+		// bottom of cube
+		glColor3f(col_r*0.95f,col_g*0.95f,col_b*0.95f);			// Set The Color To Blue
+		glVertex3f(px*1.0f,py-(length-1)*1.0f, 0.0f);		// Top Right Of The Quad (Bottom)
+		glVertex3f(px*1.0f,py*1.0f, 0.0f);		// Top Left Of The Quad (Bottom)
+		glVertex3f((px - (width-1))*1.0f,py*1.0f,0.0f);		// Bottom Left Of The Quad (Bottom)
+		glVertex3f( (px - (width-1))*1.0f,py-(length-1)*1.0f,0.0f);		// Bottom Right Of The Quad (Bottom)
 
-        // front of cube
-	glColor3f(col_r*0.9f,col_g*0.9f,col_b*0.9f);			// Set The Color To Blue
-        glVertex3f( (width-1)*1.0f, -(length-1)*1.0f, height*1.0f);		// Top Right Of The Quad (Front)
-	glVertex3f((width-1)*1.0f, 0.0f, height*1.0f);		// Top Left Of The Quad (Front)
-	glVertex3f((width-1)*1.0f, 0.0f, 0.0f);		// Top Left Of The Quad (Front)
-	glVertex3f( (width-1)*1.0f, -(length-1)*1.0f, 0.0f);		// Top Right Of The Quad (Front)
+	        // front of cube
+		glColor3f(col_r*0.9f,col_g*0.9f,col_b*0.9f);			// Set The Color To Blue
+	        glVertex3f( px*1.0f, py-(length-1)*1.0f, height*1.0f);		// Top Right Of The Quad (Front)
+		glVertex3f(px*1.0f, py*1.0f, height*1.0f);		// Top Left Of The Quad (Front)
+		glVertex3f(px*1.0f, py*1.0f, 0.0f);		// Top Left Of The Quad (Front)
+		glVertex3f( px*1.0f, py-(length-1)*1.0f, 0.0f);		// Top Right Of The Quad (Front)
 
-        //back of cube.
-	glColor3f(col_r*0.85f,col_g*0.85f,col_b*0.85f);			// Set The Color To Blue
-        glVertex3f( 0.0f,-(length-1)*1.0f,height*1.0f);		// Top Right Of The Quad (Back)
-        glVertex3f(0.0f,0.0f,height*1.0f);		// Top Left Of The Quad (Back)
-        glVertex3f(0.0f, 0.0f, 0.0f);		// Bottom Left Of The Quad (Back)
-        glVertex3f( 0.0f, -(length-1)*1.0f,0.0f);		// Bottom Right Of The Quad (Back)
+	        //back of cube.
+		glColor3f(col_r*0.85f,col_g*0.85f,col_b*0.85f);			// Set The Color To Blue
+	        glVertex3f( (px - (width-1))*1.0f,py-(length-1)*1.0f,height*1.0f);		// Top Right Of The Quad (Back)
+	        glVertex3f((px - (width-1))*1.0f,py*1.0f,height*1.0f);		// Top Left Of The Quad (Back)
+	        glVertex3f((px - (width-1))*1.0f, py*1.0f, 0.0f);		// Bottom Left Of The Quad (Back)
+	        glVertex3f( (px - (width-1))*1.0f, py-(length-1)*1.0f,0.0f);		// Bottom Right Of The Quad (Back)
 
-        // left of cube
-	glColor3f(col_r*0.8f,col_g*0.8f,col_b*0.8f);			// Set The Color To Blue
-        glVertex3f((width-1)*1.0f, 0.0f, height*1.0f);		// Top Right Of The Quad (Left)
-        glVertex3f(0.0f, 0.0f, height*1.0f);		// Top Left Of The Quad (Left)
-        glVertex3f(0.0f,0.0f,0.0f);		// Bottom Left Of The Quad (Left)
-        glVertex3f((width-1)*1.0f,0.0f, 0.0f);		// Bottom Right Of The Quad (Left)
+	        // left of cube
+		glColor3f(col_r*0.8f,col_g*0.8f,col_b*0.8f);			// Set The Color To Blue
+	        glVertex3f(px*1.0f, py*1.0f, height*1.0f);		// Top Right Of The Quad (Left)
+	        glVertex3f((px - (width-1))*1.0f, py*1.0f, height*1.0f);		// Top Left Of The Quad (Left)
+	        glVertex3f((px - (width-1))*1.0f,py*1.0f,0.0f);		// Bottom Left Of The Quad (Left)
+	        glVertex3f(px*1.0f,py*1.0f, 0.0f);		// Bottom Right Of The Quad (Left)
 
-        // Right of cube
-	glColor3f(col_r*0.75f,col_g*0.75f,col_b*0.75f);			// Set The Color To Blue
-        glVertex3f( (width-1)*1.0f, -(length-1)*1.0f,height*1.0f);	        // Top Right Of The Quad (Right)
-        glVertex3f( 0.0f, -(length-1)*1.0f, height*1.0f);		// Top Left Of The Quad (Right)
-        glVertex3f( 0.0f,-(length-1)*1.0f, 0.0f);		// Bottom Left Of The Quad (Right)
-        glVertex3f( (width-1)*1.0f,-(length-1)*1.0f,0.0f);		// Bottom Right Of The Quad (Right)
-         glEnd();					// Done Drawing The Cube
+	        // Right of cube
+		glColor3f(col_r*0.75f,col_g*0.75f,col_b*0.75f);			// Set The Color To Blue
+	        glVertex3f( px*1.0f, py-(length-1)*1.0f,height*1.0f);	        // Top Right Of The Quad (Right)
+	        glVertex3f( (px - (width-1))*1.0f, py-(length-1)*1.0f, height*1.0f);		// Top Left Of The Quad (Right)
+	        glVertex3f( (px - (width-1))*1.0f,py-(length-1)*1.0f, 0.0f);		// Bottom Left Of The Quad (Right)
+	        glVertex3f( px*1.0f,py-(length-1)*1.0f,0.0f);		// Bottom Right Of The Quad (Right)
+        glEnd();					// Done Drawing The Cube
 
-
-	 // cout<<(width-1)<<" "<<-(length-1)<<" "<<1<<endl;
- 	// cout<<(width-1)<<" "<<0<<" "<<1<<endl;
- 	// cout<<(width-1)<<" "<<-(length-1)<<" "<<0<<endl;
- 	// cout<<(width-1)<<" "<<0<<" "<<0<<endl;
 }
-///////////////////
-
-
-
-
 /* The number of our GLUT window */
 int window;
 
@@ -385,7 +370,7 @@ float rquad = 5.0f;
 /* A general OpenGL initialization function.  Sets all of the initial parameters. */
 void InitGL(int Width, int Height)	        // We call this right after our OpenGL window is created.
 {
-  glClearColor(0.0f, 0.0f, 0.0f, 0.0f);		// This Will Clear The Background Color To Black
+  glClearColor(0.0f, 0.0f, 0.0f, 1.0f);		// This Will Clear The Background Color To Black
   glClearDepth(1.0);				// Enables Clearing Of The Depth Buffer
   glDepthFunc(GL_LESS);			        // The Type Of Depth Test To Do
   glEnable(GL_DEPTH_TEST);		        // Enables Depth Testing
@@ -417,8 +402,34 @@ void ReSizeGLScene(int Width, int Height)
 /* The main drawing function. */
 void DrawGLScene()
 {
-	glLoadIdentity();
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+	glLoadIdentity();
+
+	glTranslatef(-10.0f, -10.0f, -40.0f); // (z,y,x) //(-20,-20,-50)
+	glRotatef(-45.0f,1.0f,0.0f,0.0f);
+	glRotatef(45.0f,0.0f,0.0f,1.0f);
+	glBegin(GL_QUADS);				// start drawing the cube.
+		glColor3f(0.2f , 0.2f, 0.2f);			// Set The Color To Blue		// Bottom Right Of The Quad (Top)
+		glVertex3f(0.0f,-1.0f,0.0f);		// Bottom Left Of The Quad (Top)
+		glVertex3f((r->get_width())*1.0f,-1.0f, 0.0f);		// Top Left Of The Quad (Top)
+		glVertex3f((r->get_width())*1.0f,(r->get_length())*1.0f -1.0f, 0.0f);
+		glVertex3f( 0.0f,(r->get_length())*1.0f -1.0f,0.0f);
+	glEnd();
+	int signal_dist=r->get_sig_distance();
+		glBegin(GL_QUADS);				// start drawing the cube.
+		if(r->get_signal_color()==0)
+		{
+			glColor3f(1.0f , 0.3f, 0.3f);			// Set The Color To Blue		// Bottom Right Of The Quad (Top)
+		}
+		else
+		{
+			glColor3f(0.5f , 1.0f, 0.5f);
+		}
+			glVertex3f(signal_dist*1.0f,-2.0f,0.0f);		// Bottom Left Of The Quad (Top)
+			glVertex3f(signal_dist*1.0f,-1.0f,0.0f);		// Top Left Of The Quad (Top)
+			glVertex3f(signal_dist*1.0f,-1.0f,3.0f);
+			glVertex3f(signal_dist*1.0f,-2.0f,3.0f);
+		glEnd();
 
 	usleep(1000000);//sleep for one second
 	if(!road_empty)
@@ -456,14 +467,12 @@ void DrawGLScene()
 			if(px>=0 && px<r->get_width())
 			{
 				draw_cube(px,py,length,width,height,col);
-				glLoadIdentity();
+				// cout<<height<<endl;
 			}
 		}
 	}
 
-	draw_cube(r->get_width(),r->get_length(),r->get_length(),r->get_width(),0,"090");
-
-
+	//draw_cube(r->get_width() - 1,r->get_length() - 1,r->get_length(),r->get_width(), 0.0f,"222");
 
 	// draw_cube(1,1,10,10,10,"500");
 	glutSwapBuffers();
