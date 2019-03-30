@@ -1,0 +1,27 @@
+To compile the code, type
+
+$ make
+
+in the terminal and to execute it,
+
+$./output.out
+
+The config file is in XML format and the user is allowed to specify the following parameters:
+
+-signal initial color
+-time at which a signal changes color
+-vehicle-type
+-vehicle-color
+-Display character for vehicle in console output
+-Length, width and height of the vehicle
+-max speed of the vehicle
+-initial acceleration of the vehicle
+
+The simulator has the current features
+
+-Lane changing ability
+-Deceleration to prevent colloisions.
+-In the event that a collision is not probable, acceleration is increased.
+
+
+The usecase for the video given is in the XML file
