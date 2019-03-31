@@ -26,22 +26,22 @@ void Road::set_sig_colour(int col) {signal_color = col;}
 void Road::update(vector<Vehicle *> a)
 {
 	vector<vector<char>> refresh(width,vector<char>(length,' '));
-        road_map = refresh;
-        for(int i=0; i<a.size(); i++)
-        {
-                for(int j=0;j<a[i]->get_width();j++)
-                {
-                        for(int k=0;k<a[i]->get_length();k++)
-                        {
-                                int p = a[i]->get_pos()[0]-j;
-                                int q = a[i]->get_pos()[1]-k;
-                                if(p>=0 && p<width && q>=0 && q<length)
-                                {
-                                        road_map[p][length-1-q]=a[i]->get_display_char();
-                                }
-                        }
-                }
-        }
+  road_map = refresh;
+  for(int i=0; i<a.size(); i++)
+  {
+          for(int j=0;j<a[i]->get_width();j++)
+          {
+                  for(int k=0;k<a[i]->get_length();k++)
+                  {
+                          int p = a[i]->get_pos()[0]-j;
+                          int q = a[i]->get_pos()[1]+k;
+                          if(p>=0 && p<width && q>=0 && q<length)
+                          {
+                                  road_map[p][q]=a[i]->get_display_char();
+                          }
+                  }
+          }
+  }
 
 	if(signal_color==0)
 	{
@@ -62,7 +62,7 @@ void Road::display()
         for(int j=0; j<length; j++)
         {
                 for(int i=0; i<width; i++)
-                        cout<<road_map[i][j];
+                        cout<<road_map[i][length-1-j];
                 cout<<endl;
         }
         for(int i=0; i<width; i++)

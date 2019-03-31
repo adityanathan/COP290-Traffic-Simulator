@@ -6,7 +6,7 @@ using namespace std;
                 rd = r;
                 length = len;
                 width = wid;
-		height=h;
+								height=h;
                 id = i;
                 color=col;
                 max_speed=max_sp;
@@ -23,7 +23,7 @@ using namespace std;
                 rd=obj.rd;
                 length = obj.length;
                 width = obj.width;
-		height = obj.height;
+								height = obj.height;
                 id = obj.id;
                 color = obj.color;
                 max_speed = obj.max_speed;
@@ -35,7 +35,7 @@ using namespace std;
         }
         int Vehicle::get_length() {return length;}
         int Vehicle::get_width() {return width;}
-	int Vehicle::get_height() {return height;}
+				int Vehicle::get_height() {return height;}
         int Vehicle::get_id() {return id;}
         string Vehicle::get_color() {return color;}
         int Vehicle::get_max_speed() {return max_speed;}
@@ -48,4 +48,4 @@ using namespace std;
         void Vehicle::set_acceleration(int acc) {acceleration=acc;}
         void Vehicle::set_pos(int x, int y) {pos[0]=x; pos[1]=y;}
         void Vehicle::set_velocity(vector<int> v) {velocity[0]=v[0]; velocity[1]=v[1];}
-	void Vehicle::set_velocity(int x, int y) {velocity[0]=x; velocity[1]=y;}
+				void Vehicle::set_velocity(int x, int y) {velocity[0]=x; velocity[1]=y;}
