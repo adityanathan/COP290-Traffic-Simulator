@@ -280,7 +280,7 @@ vector<Vehicle *> interaction_update(Road *r, vector<Vehicle *> a, vector<int> s
 
           //Under normal circumstances, if the vehicle is not at max speed I want it to keep increasing speed till it reaches max.
           int temp_vx = cur.get_velocity()[0];
-          temp_vx=temp_vx+1;
+          temp_vx=temp_vx+cur.get_acceleration();
           if(temp_vx>max)
             {
               temp_vx=max;
