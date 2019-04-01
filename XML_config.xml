@@ -3,19 +3,75 @@
 <road  id="1" length="60" width="10" default_acc="0" default_velocity="1" sig_dist="30">
 
     <signals initial_color = "red">
-        <signal time = "15">
-            </signal>
         <signal time = "20">
             </signal>
-	<signal time = "35">
-	</signal>
-</signals>
+        <signal time = "25">
+            </signal>
+				<signal time = "40">
+				</signal>
+		</signals>
 
 
     <Vehicles>
+
+			<vehicle>
+					<type>Bike</type>
+					<color>999</color>
+					<display>b</display>
+					<length>2</length>
+					<width>1</width>
+		<height>1</height>
+					<max_v>2</max_v>
+					<acc>1</acc>
+			</vehicle>
+
+			<vehicle>
+					<type>Bike</type>
+					<color>559</color>
+					<display>b</display>
+					<length>2</length>
+					<width>1</width>
+		<height>1</height>
+					<max_v>2</max_v>
+					<acc>1</acc>
+			</vehicle>
+
+			<vehicle>
+					<type>Bike</type>
+					<color>955</color>
+					<display>b</display>
+					<length>2</length>
+					<width>1</width>
+		<height>1</height>
+					<max_v>2</max_v>
+					<acc>1</acc>
+			</vehicle>
+
+			<vehicle>
+					<type>Bike</type>
+					<color>595</color>
+					<display>b</display>
+					<length>2</length>
+					<width>1</width>
+		<height>1</height>
+					<max_v>2</max_v>
+					<acc>1</acc>
+			</vehicle>
+
+			<vehicle>
+					<type>Bike</type>
+					<color>855</color>
+					<display>b</display>
+					<length>2</length>
+					<width>1</width>
+		<height>1</height>
+					<max_v>2</max_v>
+					<acc>1</acc>
+			</vehicle>
+
         <vehicle>
             <type>Car</type>
-            <color>595</color>
+            <color>585</color>
             <display>C</display>
             <length>2</length>
             <width>2</width>
@@ -26,18 +82,18 @@
 
         <vehicle>
             <type>Car</type>
-            <color>595</color>
+            <color>558</color>
             <display>C</display>
             <length>2</length>
             <width>2</width>
-	    <height>2</height>
+	    <height>1</height>
             <max_v>2</max_v>
             <acc>1</acc>
         </vehicle>
 
         <vehicle>
             <type>Bike</type>
-            <color>559</color>
+            <color>557</color>
             <display>b</display>
             <length>2</length>
             <width>1</width>
@@ -48,7 +104,7 @@
 
         <vehicle>
             <type>Bike</type>
-            <color>595</color>
+            <color>575</color>
             <display>b</display>
             <length>2</length>
             <width>1</width>
@@ -59,7 +115,7 @@
 
         <vehicle>
             <type>Bike</type>
-            <color>595</color>
+            <color>755</color>
             <display>b</display>
             <length>2</length>
             <width>1</width>
@@ -70,7 +126,7 @@
 
         <vehicle>
             <type>Bike</type>
-            <color>595</color>
+            <color>565</color>
             <display>b</display>
             <length>2</length>
             <width>1</width>
@@ -81,7 +137,7 @@
 
         <vehicle>
             <type>Bus</type>
-            <color>559</color>
+            <color>556</color>
             <display>B</display>
             <length>3</length>
             <width>2</width>
@@ -92,7 +148,7 @@
 
         <vehicle>
             <type>Car</type>        <!-- Type is for description in openGL-->
-            <color>595</color>
+            <color>655</color>
             <display>C</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>2</length>
             <width>2</width>
@@ -103,7 +159,7 @@
 
         <vehicle>
             <type>Bike</type>        <!-- Type is for description in openGL-->
-            <color>559</color>
+            <color>595</color>
             <display>b</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>2</length>
             <width>1</width>
@@ -114,7 +170,7 @@
 
         <vehicle>
             <type>Truck</type>        <!-- Type is for description in openGL-->
-            <color>595</color>
+            <color>955</color>
             <display>T</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>4</length>
             <width>2</width>
@@ -125,7 +181,7 @@
 
         <vehicle>
             <type>Bus</type>        <!-- Type is for description in openGL-->
-            <color>955</color>
+            <color>559</color>
             <display>B</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>3</length>
             <width>2</width>

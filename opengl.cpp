@@ -87,7 +87,7 @@ vector<int> check_movable_zone(Vehicle a,vector<vector<char>> rd)
           vector<int> a{m,4};
           return a;
         }
-			else if(m==x_pos && length>1)
+			else if(m==x_pos && (length>1 || rd[m+1][y_pos]=='b'))
 			{
 				vector<int> a{m,0};
 				return a;
@@ -276,26 +276,6 @@ vector<Vehicle *> interaction_update(Road *r, vector<Vehicle *> a, vector<int> s
           int signal_distance=r->get_sig_distance();
           int max=cur.get_max_speed();
           int x = cur.get_pos()[0];
-          // if(x<signal_distance/3 && r->get_signal_color()==0)
-          //   {
-          //     max=cur.get_max_speed();
-          //   }
-          // else if(x<2*signal_distance/3 && r->get_signal_color()==0)
-          //   {
-          //     max=cur.get_max_speed()/2;
-          //   }
-          // else if(x<signal_distance && r->get_signal_color()==0)
-          //   {
-          //     max=cur.get_max_speed()/3;
-          //   }
-          // else if(r->get_signal_color()==1)
-          //   {
-          //     max=cur.get_max_speed();
-          //   }
-          // if(max==0)
-          //   {
-          //     max=1;
-          //   }
 
           //Under normal circumstances, if the vehicle is not at max speed I want it to keep increasing speed till it reaches max.
           int temp_vx = cur.get_velocity()[0];
