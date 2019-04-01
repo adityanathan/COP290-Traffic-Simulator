@@ -87,6 +87,11 @@ vector<int> check_movable_zone(Vehicle a,vector<vector<char>> rd)
           vector<int> a{m,4};
           return a;
         }
+			else if(m==x_pos)
+			{
+				vector<int> a{m,0};
+				return a;
+			}
     }
 
 	//With my current velocity can I move right without hitting something else ?
@@ -467,7 +472,7 @@ void DrawGLScene()
   glVertex3f(signal_dist*1.0f,-2.0f,3.0f);
   glEnd();
 
-	usleep(250000);//sleep for 0.25 second
+	usleep(300000);//sleep for 0.25 second
 
 	////////////To make vehicles enter
 	int max_no_vehicles;

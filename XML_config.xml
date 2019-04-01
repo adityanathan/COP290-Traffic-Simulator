@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<road  id="1" length="40" width="10" default_acc="0" default_velocity="1" sig_dist="15">
+<road  id="1" length="60" width="10" default_acc="0" default_velocity="1" sig_dist="30">
 
     <signals initial_color = "red">
         <signal time = "15">
@@ -20,7 +20,7 @@
             <length>2</length>
             <width>2</width>
 	    <height>1</height>
-            <max_v>1</max_v>
+            <max_v>2</max_v>
             <acc>1</acc>
         </vehicle>
 
@@ -31,7 +31,7 @@
             <length>2</length>
             <width>2</width>
 	    <height>2</height>
-            <max_v>1</max_v>
+            <max_v>2</max_v>
             <acc>1</acc>
         </vehicle>
 
@@ -40,9 +40,9 @@
             <color>559</color>
             <display>b</display>
             <length>2</length>
-            <width>2</width>
+            <width>1</width>
 	    <height>1</height>
-            <max_v>1</max_v>
+            <max_v>3</max_v>
             <acc>1</acc>
         </vehicle>
 
@@ -53,7 +53,7 @@
             <length>2</length>
             <width>2</width>
 	    <height>1</height>
- 	    <max_v>1</max_v>
+ 	    <max_v>3</max_v>
             <acc>1</acc>
         </vehicle>
 
@@ -64,7 +64,7 @@
             <length>2</length>
             <width>2</width>
 	    <height>1</height>
-	    <max_v>1</max_v>
+	    <max_v>3</max_v>
             <acc>1</acc>
         </vehicle>
 
@@ -75,7 +75,7 @@
             <length>2</length>
             <width>2</width>
 	    <height>1</height>
-            <max_v>1</max_v>
+            <max_v>3</max_v>
             <acc>1</acc>
         </vehicle>
 
@@ -97,7 +97,7 @@
             <length>2</length>
             <width>2</width>
 	    <height>1</height>
-            <max_v>1</max_v>
+            <max_v>2</max_v>
             <acc>1</acc>
         </vehicle>
 
@@ -108,7 +108,7 @@
             <length>2</length>
             <width>2</width>
 	    <height>1</height>
-            <max_v>1</max_v>
+            <max_v>3</max_v>
             <acc>1</acc>
         </vehicle>
 

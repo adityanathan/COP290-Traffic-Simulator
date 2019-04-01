@@ -87,6 +87,11 @@ vector<int> check_movable_zone(Vehicle a,vector<vector<char>> rd)
           vector<int> a{m,4};
           return a;
         }
+			else if(m==x_pos)
+			{
+				vector<int> a{m,0};
+				return a;
+			}
     }
 
 	//With my current velocity can I move right without hitting something else ?
