@@ -26,7 +26,6 @@ private:
 
         //All vehicles will be spawned at the starting line.
 public:
-				bool am_i_straight;
 				int opengl_diagonal;
 
         Vehicle(Road *rd, int len, int wid, int h, string col, int max_sp, int acc, char disp, int i, vector<int> position);

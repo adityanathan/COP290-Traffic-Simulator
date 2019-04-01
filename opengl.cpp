@@ -272,7 +272,6 @@ vector<Vehicle *> interaction_update(Road *r, vector<Vehicle *> a, vector<int> s
     {
       if(a[i]->get_pos()[1]!=-1)  //If my vehicle is on the road, then update.
         {
-					a[i]->am_i_straight=true;
 					a[i]->opengl_diagonal=0;
           Vehicle cur = list[i];
           int signal_distance=r->get_sig_distance();
@@ -315,7 +314,6 @@ vector<Vehicle *> interaction_update(Road *r, vector<Vehicle *> a, vector<int> s
             {
 							if(a[i]->get_length()==1)
 							{
-								a[i]->am_i_straight=false;
 								a[i]->opengl_diagonal=option[1];
 							}
               a[i]->set_velocity(cur.get_velocity());
@@ -557,14 +555,7 @@ void DrawGLScene()
           string col=a[i]->get_color();
           if(px>=0 && px<r->get_width())
             {
-							if(a[i]->am_i_straight)
-							{
-								draw_cube(px,py,length,width,height,col);
-							}
-							else
-							{
-								draw_cube(px,py,length,width,height,col,a[i]->opengl_diagonal);
-							}
+							draw_cube(px,py,length,width,height,col,a[i]->opengl_diagonal);
             }
         }
     }
