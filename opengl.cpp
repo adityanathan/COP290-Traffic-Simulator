@@ -87,7 +87,7 @@ vector<int> check_movable_zone(Vehicle a,vector<vector<char>> rd)
           vector<int> a{m,4};
           return a;
         }
-			else if(m==x_pos)
+			else if(m==x_pos && length>1)
 			{
 				vector<int> a{m,0};
 				return a;

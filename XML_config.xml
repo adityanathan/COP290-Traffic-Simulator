@@ -42,7 +42,7 @@
             <length>2</length>
             <width>1</width>
 	    <height>1</height>
-            <max_v>3</max_v>
+            <max_v>2</max_v>
             <acc>1</acc>
         </vehicle>
 
@@ -51,9 +51,9 @@
             <color>595</color>
             <display>b</display>
             <length>2</length>
-            <width>2</width>
+            <width>1</width>
 	    <height>1</height>
- 	    <max_v>3</max_v>
+ 	    <max_v>3</max2v>
             <acc>1</acc>
         </vehicle>
 
@@ -62,9 +62,9 @@
             <color>595</color>
             <display>b</display>
             <length>2</length>
-            <width>2</width>
+            <width>1</width>
 	    <height>1</height>
-	    <max_v>3</max_v>
+	    <max_v>3</max2v>
             <acc>1</acc>
         </vehicle>
 
@@ -73,9 +73,9 @@
             <color>595</color>
             <display>b</display>
             <length>2</length>
-            <width>2</width>
+            <width>1</width>
 	    <height>1</height>
-            <max_v>3</max_v>
+            <max_v>2</max_v>
             <acc>1</acc>
         </vehicle>
 
@@ -106,9 +106,9 @@
             <color>559</color>
             <display>b</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>2</length>
-            <width>2</width>
+            <width>1</width>
 	    <height>1</height>
-            <max_v>3</max_v>
+            <max_v>2</max_v>
             <acc>1</acc>
         </vehicle>
 
