@@ -13,7 +13,7 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
-#include "/home/aditya/rapidxml-1.13/rapidxml.hpp"
+#include "/home/aditya/rapidxml-1.13/rapidxml.hpp"  //To the USER: Change this to the path of where the rapidXML hpp file is in your computer.
 
 using namespace rapidxml;
 using namespace std;
