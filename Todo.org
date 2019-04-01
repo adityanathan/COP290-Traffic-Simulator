@@ -1,4 +1,0 @@
-* Tasks
-** TODO Remove decrease in velocity when signal is red.
-** TODO Check whether you're updating everything in a synchronised manner cause the vehicles are glitching together. 
-** TODO To remove all acceleration commands.

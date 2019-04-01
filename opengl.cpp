@@ -347,48 +347,110 @@ void draw_cube(float px, float py, float length, float width, float height, stri
   glBegin(GL_QUADS);				// start drawing the cube.
 	//top of cube
   glColor3f(col_r*1.0f,col_g*1.0f,col_b*1.0f);
-  glVertex3f(px*1.0f,(py-(length-1)+diag/2.0f)*1.0f, height*1.0f);		// Top Right Of The Quad (Top)
-  glVertex3f(px*1.0f,(py+diag/2.0f)*1.0f, height*1.0f);		// Top Left Of The Quad (Top)
+  glVertex3f(px*1.0f,(py-(length-1)+diag/5.0f)*1.0f, height*1.0f);		// Top Right Of The Quad (Top)
+  glVertex3f(px*1.0f,(py+diag/5.0f)*1.0f, height*1.0f);		// Top Left Of The Quad (Top)
   glVertex3f((px - (width-1))*1.0f,py*1.0f,height*1.0f);		// Bottom Left Of The Quad (Top)
-  glVertex3f( (px - (width-1))*1.0f,py-(length-1)*1.0f,height*1.0f);		// Bottom Right Of The Quad (Top)
+  glVertex3f( (px - (width-1))*1.0f,(py-(length-1))*1.0f,height*1.0f);		// Bottom Right Of The Quad (Top)
 
   // bottom of cube
   glColor3f(col_r*0.95f,col_g*0.95f,col_b*0.95f);
-  glVertex3f(px*1.0f,(py-(length-1)+diag/2.0f)*1.0f, 0.0f);		// Top Right Of The Quad (Bottom)
-  glVertex3f(px*1.0f,(py+diag/2.0f)*1.0f, 0.0f);		// Top Left Of The Quad (Bottom)
+  glVertex3f(px*1.0f,(py-(length-1)+(diag/5.0f))*1.0f, 0.0f);		// Top Right Of The Quad (Bottom)
+  glVertex3f(px*1.0f,(py+(diag/5.0f))*1.0f, 0.0f);		// Top Left Of The Quad (Bottom)
   glVertex3f((px - (width-1))*1.0f,py*1.0f,0.0f);		// Bottom Left Of The Quad (Bottom)
-  glVertex3f( (px - (width-1))*1.0f,py-(length-1)*1.0f,0.0f);		// Bottom Right Of The Quad (Bottom)
+  glVertex3f( (px - (width-1))*1.0f,(py-(length-1))*1.0f,0.0f);		// Bottom Right Of The Quad (Bottom)
 
   // front of cube
   glColor3f(col_r*0.9f,col_g*0.9f,col_b*0.9f);
-  glVertex3f( px*1.0f, (py-(length-1)+diag/2.0f)*1.0f, height*1.0f);		// Top Right Of The Quad (Front)
-  glVertex3f(px*1.0f, (py+diag/2.0f)*1.0f, height*1.0f);		// Top Left Of The Quad (Front)
-  glVertex3f(px*1.0f, (py+diag/2.0f)*1.0f, 0.0f);		// Top Left Of The Quad (Front)
-  glVertex3f( px*1.0f, ((py+diag/2.0f)-(length-1))*1.0f, 0.0f);		// Top Right Of The Quad (Front)
+  glVertex3f( px*1.0f, (py-(length-1)+(diag/5.0f))*1.0f, height*1.0f);		// Top Right Of The Quad (Front)
+  glVertex3f(px*1.0f, (py+(diag/5.0f))*1.0f, height*1.0f);		// Top Left Of The Quad (Front)
+  glVertex3f(px*1.0f, (py+(diag/5.0f))*1.0f, 0.0f);		// Top Left Of The Quad (Front)
+  glVertex3f( px*1.0f, ((py+diag/5.0f)-(length-1))*1.0f, 0.0f);		// Top Right Of The Quad (Front)
 
   //back of cube.
   glColor3f(col_r*0.85f,col_g*0.85f,col_b*0.85f);
-  glVertex3f( (px - (width-1))*1.0f,py-(length-1)*1.0f,height*1.0f);		// Top Right Of The Quad (Back)
+  glVertex3f( (px - (width-1))*1.0f,(py-(length-1))*1.0f,height*1.0f);		// Top Right Of The Quad (Back)
   glVertex3f((px - (width-1))*1.0f,py*1.0f,height*1.0f);		// Top Left Of The Quad (Back)
   glVertex3f((px - (width-1))*1.0f, py*1.0f, 0.0f);		// Bottom Left Of The Quad (Back)
-  glVertex3f( (px - (width-1))*1.0f, py-(length-1)*1.0f,0.0f);		// Bottom Right Of The Quad (Back)
+  glVertex3f( (px - (width-1))*1.0f, (py-(length-1))*1.0f,0.0f);		// Bottom Right Of The Quad (Back)
 
   // left of cube
   glColor3f(col_r*0.8f,col_g*0.8f,col_b*0.8f);
-  glVertex3f(px*1.0f, (py+diag/2.0f)*1.0f, height*1.0f);		// Top Right Of The Quad (Left)
+  glVertex3f(px*1.0f, (py+(diag/5.0f))*1.0f, height*1.0f);		// Top Right Of The Quad (Left)
   glVertex3f((px - (width-1))*1.0f, py*1.0f, height*1.0f);		// Top Left Of The Quad (Left)
   glVertex3f((px - (width-1))*1.0f,py*1.0f,0.0f);		// Bottom Left Of The Quad (Left)
-  glVertex3f(px*1.0f,(py+diag/2.0f)*1.0f, 0.0f);		// Bottom Right Of The Quad (Left)
+  glVertex3f(px*1.0f,(py+(diag/5.0f))*1.0f, 0.0f);		// Bottom Right Of The Quad (Left)
 
   // Right of cube
   glColor3f(col_r*0.75f,col_g*0.75f,col_b*0.75f);
-  glVertex3f( px*1.0f, (py-(length-1)+diag/2.0f)*1.0f,height*1.0f);	        // Top Right Of The Quad (Right)
-  glVertex3f( (px - (width-1))*1.0f, py-(length-1)*1.0f, height*1.0f);		// Top Left Of The Quad (Right)
-  glVertex3f( (px - (width-1))*1.0f,py-(length-1)*1.0f, 0.0f);		// Bottom Left Of The Quad (Right)
-  glVertex3f( px*1.0f,(py-(length-1)+diag/2.0f)*1.0f,0.0f);		// Bottom Right Of The Quad (Right)
+  glVertex3f( px*1.0f, (py-(length-1)+(diag/5.0f))*1.0f,height*1.0f);	        // Top Right Of The Quad (Right)
+  glVertex3f( (px - (width-1))*1.0f, (py-(length-1))*1.0f, height*1.0f);		// Top Left Of The Quad (Right)
+  glVertex3f( (px - (width-1))*1.0f,(py-(length-1))*1.0f, 0.0f);		// Bottom Left Of The Quad (Right)
+  glVertex3f( px*1.0f,(py-(length-1)+(diag/5.0f))*1.0f,0.0f);		// Bottom Right Of The Quad (Right)
   glEnd();					// Done Drawing The Cube
 
 }
+
+void draw_cube_bike(float px, float py, float length, float width, float height, string col, int diag=0)
+{
+	int rgb=stoi(col);
+	float col_b = ((1.0)*(rgb%10))/10;
+	rgb=rgb/10;
+	float col_g = ((1.0)*(rgb%10))/10;
+	rgb=rgb/10;
+	float col_r = ((1.0)*(rgb%10))/10;
+
+	glLoadIdentity();
+	// glTranslatef(-10.0f, -10.0f, -40.0f);
+	// glRotatef(45.0f,0.0f,0.0f,1.0f);
+	glTranslatef(0.0f, -10.0f, -40.0f);
+	glRotatef(-65.0f,1.0f,0.0f,0.0f);
+	glRotatef(65.0f,0.0f,0.0f,1.0f);
+  glBegin(GL_QUADS);				// start drawing the cube.
+	//top of cube
+  glColor3f(col_r*1.0f,col_g*1.0f,col_b*1.0f);
+  glVertex3f(px*1.0f,(py-(length-0.5f)+diag/5.0f)*1.0f, height*1.0f);		// Top Right Of The Quad (Top)
+  glVertex3f(px*1.0f,(py+diag/5.0f)*1.0f, height*1.0f);		// Top Left Of The Quad (Top)
+  glVertex3f((px - (width-1))*1.0f,py*1.0f,height*1.0f);		// Bottom Left Of The Quad (Top)
+  glVertex3f( (px - (width-1))*1.0f,(py-(length-0.5f))*1.0f,height*1.0f);		// Bottom Right Of The Quad (Top)
+
+  // bottom of cube
+  glColor3f(col_r*0.95f,col_g*0.95f,col_b*0.95f);
+  glVertex3f(px*1.0f,(py-(length-0.5f)+(diag/5.0f))*1.0f, 0.0f);		// Top Right Of The Quad (Bottom)
+  glVertex3f(px*1.0f,(py+(diag/5.0f))*1.0f, 0.0f);		// Top Left Of The Quad (Bottom)
+  glVertex3f((px - (width-1))*1.0f,py*1.0f,0.0f);		// Bottom Left Of The Quad (Bottom)
+  glVertex3f( (px - (width-1))*1.0f,(py-(length-0.5f))*1.0f,0.0f);		// Bottom Right Of The Quad (Bottom)
+
+  // front of cube
+  glColor3f(col_r*0.9f,col_g*0.9f,col_b*0.9f);
+  glVertex3f( px*1.0f, (py-(length-0.5f)+(diag/5.0f))*1.0f, height*1.0f);		// Top Right Of The Quad (Front)
+  glVertex3f(px*1.0f, (py+(diag/5.0f))*1.0f, height*1.0f);		// Top Left Of The Quad (Front)
+  glVertex3f(px*1.0f, (py+(diag/5.0f))*1.0f, 0.0f);		// Top Left Of The Quad (Front)
+  glVertex3f( px*1.0f, ((py+diag/5.0f)-(length-0.5f))*1.0f, 0.0f);		// Top Right Of The Quad (Front)
+
+  //back of cube.
+  glColor3f(col_r*0.85f,col_g*0.85f,col_b*0.85f);
+  glVertex3f( (px - (width-1))*1.0f,(py-(length-0.5f))*1.0f,height*1.0f);		// Top Right Of The Quad (Back)
+  glVertex3f((px - (width-1))*1.0f,py*1.0f,height*1.0f);		// Top Left Of The Quad (Back)
+  glVertex3f((px - (width-1))*1.0f, py*1.0f, 0.0f);		// Bottom Left Of The Quad (Back)
+  glVertex3f( (px - (width-1))*1.0f, (py-(length-0.5f))*1.0f,0.0f);		// Bottom Right Of The Quad (Back)
+
+  // left of cube
+  glColor3f(col_r*0.8f,col_g*0.8f,col_b*0.8f);
+  glVertex3f(px*1.0f, (py+(diag/5.0f))*1.0f, height*1.0f);		// Top Right Of The Quad (Left)
+  glVertex3f((px - (width-1))*1.0f, py*1.0f, height*1.0f);		// Top Left Of The Quad (Left)
+  glVertex3f((px - (width-1))*1.0f,py*1.0f,0.0f);		// Bottom Left Of The Quad (Left)
+  glVertex3f(px*1.0f,(py+(diag/5.0f))*1.0f, 0.0f);		// Bottom Right Of The Quad (Left)
+
+  // Right of cube
+  glColor3f(col_r*0.75f,col_g*0.75f,col_b*0.75f);
+  glVertex3f( px*1.0f, (py-(length-0.5f)+(diag/5.0f))*1.0f,height*1.0f);	        // Top Right Of The Quad (Right)
+  glVertex3f( (px - (width-1))*1.0f, (py-(length-0.5f))*1.0f, height*1.0f);		// Top Left Of The Quad (Right)
+  glVertex3f( (px - (width-1))*1.0f,(py-(length-0.5f))*1.0f, 0.0f);		// Bottom Left Of The Quad (Right)
+  glVertex3f( px*1.0f,(py-(length-0.5f)+(diag/5.0f))*1.0f,0.0f);		// Bottom Right Of The Quad (Right)
+  glEnd();					// Done Drawing The Cube
+
+}
+
 /* The number of our GLUT window */
 int window;
 
@@ -553,10 +615,14 @@ void DrawGLScene()
           int width = a[i]->get_width();
           int height = a[i]->get_height();
           string col=a[i]->get_color();
-          if(px>=0 && px<r->get_width())
+          if(px>=0 && px<r->get_width() && length>1)
             {
 							draw_cube(px,py,length,width,height,col,a[i]->opengl_diagonal);
             }
+          else if(px>=0 && px<r->get_width() && length==1)
+          {
+							draw_cube_bike(px,py,length,width,height,col,a[i]->opengl_diagonal);
+          }
         }
     }
 	glutSwapBuffers();
