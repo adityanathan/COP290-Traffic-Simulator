@@ -3,11 +3,11 @@
 <road  id="1" length="60" width="10" default_acc="0" default_velocity="1" sig_dist="30">
 
     <signals initial_color = "red">
-        <signal time = "20">
+        <signal time = "40">
             </signal>
-        <signal time = "25">
+        <signal time = "45">
             </signal>
-				<signal time = "40">
+				<signal time = "50">
 				</signal>
 		</signals>
 
@@ -189,6 +189,28 @@
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
+
+				<vehicle>
+						<type>Bike</type>
+						<color>559</color>
+						<display>b</display>
+						<length>2</length>
+						<width>1</width>
+			<height>1</height>
+						<max_v>2</max_v>
+						<acc>1</acc>
+				</vehicle>
+
+				<vehicle>
+						<type>Bike</type>
+						<color>559</color>
+						<display>b</display>
+						<length>2</length>
+						<width>1</width>
+			<height>1</height>
+						<max_v>2</max_v>
+						<acc>1</acc>
+				</vehicle>
 
         </Vehicles>
 

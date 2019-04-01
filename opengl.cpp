@@ -272,6 +272,8 @@ vector<Vehicle *> interaction_update(Road *r, vector<Vehicle *> a, vector<int> s
     {
       if(a[i]->get_pos()[1]!=-1)  //If my vehicle is on the road, then update.
         {
+					a[i]->am_i_straight=true;
+					a[i]->opengl_diagonal=0;
           Vehicle cur = list[i];
           int signal_distance=r->get_sig_distance();
           int max=cur.get_max_speed();
@@ -311,6 +313,11 @@ vector<Vehicle *> interaction_update(Road *r, vector<Vehicle *> a, vector<int> s
             }
           else if(option[1] == -1 || option[1] == 1)
             {
+							if(a[i]->get_length()==1)
+							{
+								a[i]->am_i_straight=false;
+								a[i]->opengl_diagonal=option[1];
+							}
               a[i]->set_velocity(cur.get_velocity());
               int px = option[0];
               int py = cur.get_pos()[1]+option[1];
@@ -324,7 +331,7 @@ vector<Vehicle *> interaction_update(Road *r, vector<Vehicle *> a, vector<int> s
 
 
 
-void draw_cube(float px, float py, float length, float width, float height, string col)
+void draw_cube(float px, float py, float length, float width, float height, string col, int diag=0)
 {
 	int rgb=stoi(col);
 	float col_b = ((1.0)*(rgb%10))/10;
@@ -334,30 +341,32 @@ void draw_cube(float px, float py, float length, float width, float height, stri
 	float col_r = ((1.0)*(rgb%10))/10;
 
 	glLoadIdentity();
-	glTranslatef(-10.0f, -10.0f, -40.0f);
-	glRotatef(-45.0f,1.0f,0.0f,0.0f);
-	glRotatef(45.0f,0.0f,0.0f,1.0f);
+	// glTranslatef(-10.0f, -10.0f, -40.0f);
+	// glRotatef(45.0f,0.0f,0.0f,1.0f);
+	glTranslatef(0.0f, -10.0f, -40.0f);
+	glRotatef(-65.0f,1.0f,0.0f,0.0f);
+	glRotatef(65.0f,0.0f,0.0f,1.0f);
   glBegin(GL_QUADS);				// start drawing the cube.
 	//top of cube
   glColor3f(col_r*1.0f,col_g*1.0f,col_b*1.0f);
-  glVertex3f(px*1.0f,py-(length-1)*1.0f, height*1.0f);		// Top Right Of The Quad (Top)
-  glVertex3f(px*1.0f,py*1.0f, height*1.0f);		// Top Left Of The Quad (Top)
+  glVertex3f(px*1.0f,(py-(length-1)+diag/2.0f)*1.0f, height*1.0f);		// Top Right Of The Quad (Top)
+  glVertex3f(px*1.0f,(py+diag/2.0f)*1.0f, height*1.0f);		// Top Left Of The Quad (Top)
   glVertex3f((px - (width-1))*1.0f,py*1.0f,height*1.0f);		// Bottom Left Of The Quad (Top)
   glVertex3f( (px - (width-1))*1.0f,py-(length-1)*1.0f,height*1.0f);		// Bottom Right Of The Quad (Top)
 
   // bottom of cube
   glColor3f(col_r*0.95f,col_g*0.95f,col_b*0.95f);
-  glVertex3f(px*1.0f,py-(length-1)*1.0f, 0.0f);		// Top Right Of The Quad (Bottom)
-  glVertex3f(px*1.0f,py*1.0f, 0.0f);		// Top Left Of The Quad (Bottom)
+  glVertex3f(px*1.0f,(py-(length-1)+diag/2.0f)*1.0f, 0.0f);		// Top Right Of The Quad (Bottom)
+  glVertex3f(px*1.0f,(py+diag/2.0f)*1.0f, 0.0f);		// Top Left Of The Quad (Bottom)
   glVertex3f((px - (width-1))*1.0f,py*1.0f,0.0f);		// Bottom Left Of The Quad (Bottom)
   glVertex3f( (px - (width-1))*1.0f,py-(length-1)*1.0f,0.0f);		// Bottom Right Of The Quad (Bottom)
 
   // front of cube
   glColor3f(col_r*0.9f,col_g*0.9f,col_b*0.9f);
-  glVertex3f( px*1.0f, py-(length-1)*1.0f, height*1.0f);		// Top Right Of The Quad (Front)
-  glVertex3f(px*1.0f, py*1.0f, height*1.0f);		// Top Left Of The Quad (Front)
-  glVertex3f(px*1.0f, py*1.0f, 0.0f);		// Top Left Of The Quad (Front)
-  glVertex3f( px*1.0f, py-(length-1)*1.0f, 0.0f);		// Top Right Of The Quad (Front)
+  glVertex3f( px*1.0f, (py-(length-1)+diag/2.0f)*1.0f, height*1.0f);		// Top Right Of The Quad (Front)
+  glVertex3f(px*1.0f, (py+diag/2.0f)*1.0f, height*1.0f);		// Top Left Of The Quad (Front)
+  glVertex3f(px*1.0f, (py+diag/2.0f)*1.0f, 0.0f);		// Top Left Of The Quad (Front)
+  glVertex3f( px*1.0f, ((py+diag/2.0f)-(length-1))*1.0f, 0.0f);		// Top Right Of The Quad (Front)
 
   //back of cube.
   glColor3f(col_r*0.85f,col_g*0.85f,col_b*0.85f);
@@ -368,17 +377,17 @@ void draw_cube(float px, float py, float length, float width, float height, stri
 
   // left of cube
   glColor3f(col_r*0.8f,col_g*0.8f,col_b*0.8f);
-  glVertex3f(px*1.0f, py*1.0f, height*1.0f);		// Top Right Of The Quad (Left)
+  glVertex3f(px*1.0f, (py+diag/2.0f)*1.0f, height*1.0f);		// Top Right Of The Quad (Left)
   glVertex3f((px - (width-1))*1.0f, py*1.0f, height*1.0f);		// Top Left Of The Quad (Left)
   glVertex3f((px - (width-1))*1.0f,py*1.0f,0.0f);		// Bottom Left Of The Quad (Left)
-  glVertex3f(px*1.0f,py*1.0f, 0.0f);		// Bottom Right Of The Quad (Left)
+  glVertex3f(px*1.0f,(py+diag/2.0f)*1.0f, 0.0f);		// Bottom Right Of The Quad (Left)
 
   // Right of cube
   glColor3f(col_r*0.75f,col_g*0.75f,col_b*0.75f);
-  glVertex3f( px*1.0f, py-(length-1)*1.0f,height*1.0f);	        // Top Right Of The Quad (Right)
+  glVertex3f( px*1.0f, (py-(length-1)+diag/2.0f)*1.0f,height*1.0f);	        // Top Right Of The Quad (Right)
   glVertex3f( (px - (width-1))*1.0f, py-(length-1)*1.0f, height*1.0f);		// Top Left Of The Quad (Right)
   glVertex3f( (px - (width-1))*1.0f,py-(length-1)*1.0f, 0.0f);		// Bottom Left Of The Quad (Right)
-  glVertex3f( px*1.0f,py-(length-1)*1.0f,0.0f);		// Bottom Right Of The Quad (Right)
+  glVertex3f( px*1.0f,(py-(length-1)+diag/2.0f)*1.0f,0.0f);		// Bottom Right Of The Quad (Right)
   glEnd();					// Done Drawing The Cube
 
 }
@@ -426,9 +435,12 @@ void DrawGLScene()
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 	glLoadIdentity();
 
-	glTranslatef(-10.0f, -10.0f, -40.0f);
-	glRotatef(-45.0f,1.0f,0.0f,0.0f);
-	glRotatef(45.0f,0.0f,0.0f,1.0f);
+	// glTranslatef(-10.0f, -10.0f, -40.0f);
+	// glRotatef(-45.0f,0.0f,0.0f,1.0f);
+	// glRotatef(45.0f,0.0f,0.0f,1.0f);
+	glTranslatef(0.0f, -10.0f, -40.0f);
+	glRotatef(-65.0f,1.0f,0.0f,0.0f);
+	glRotatef(65.0f,0.0f,0.0f,1.0f);
 	glBegin(GL_QUADS);
   glColor3f(0.2f , 0.2f, 0.2f);
   glVertex3f(0.0f,-1.0f,0.0f);
@@ -545,8 +557,14 @@ void DrawGLScene()
           string col=a[i]->get_color();
           if(px>=0 && px<r->get_width())
             {
-              draw_cube(px,py,length,width,height,col);
-              // cout<<height<<endl;
+							if(a[i]->am_i_straight)
+							{
+								draw_cube(px,py,length,width,height,col);
+							}
+							else
+							{
+								draw_cube(px,py,length,width,height,col,a[i]->opengl_diagonal);
+							}
             }
         }
     }

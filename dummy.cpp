@@ -87,7 +87,7 @@ vector<int> check_movable_zone(Vehicle a,vector<vector<char>> rd)
           vector<int> a{m,4};
           return a;
         }
-			else if(m==x_pos)
+			else if(m==x_pos && (length>1 || rd[m+1][y_pos]=='b'))
 			{
 				vector<int> a{m,0};
 				return a;
@@ -272,30 +272,12 @@ vector<Vehicle *> interaction_update(Road *r, vector<Vehicle *> a, vector<int> s
     {
       if(a[i]->get_pos()[1]!=-1)  //If my vehicle is on the road, then update.
         {
+					a[i]->am_i_straight=true;
+					a[i]->opengl_diagonal=0;
           Vehicle cur = list[i];
           int signal_distance=r->get_sig_distance();
           int max=cur.get_max_speed();
           int x = cur.get_pos()[0];
-          // if(x<signal_distance/3 && r->get_signal_color()==0)
-          //   {
-          //     max=cur.get_max_speed();
-          //   }
-          // else if(x<2*signal_distance/3 && r->get_signal_color()==0)
-          //   {
-          //     max=cur.get_max_speed()/2;
-          //   }
-          // else if(x<signal_distance && r->get_signal_color()==0)
-          //   {
-          //     max=cur.get_max_speed()/3;
-          //   }
-          // else if(r->get_signal_color()==1)
-          //   {
-          //     max=cur.get_max_speed();
-          //   }
-          // if(max==0)
-          //   {
-          //     max=1;
-          //   }
 
           //Under normal circumstances, if the vehicle is not at max speed I want it to keep increasing speed till it reaches max.
           int temp_vx = cur.get_velocity()[0];
@@ -331,6 +313,11 @@ vector<Vehicle *> interaction_update(Road *r, vector<Vehicle *> a, vector<int> s
             }
           else if(option[1] == -1 || option[1] == 1)
             {
+							if(a[i]->get_length==1)
+							{
+								a[i]->am_i_straight=false;
+								a[i]->opengl_diagonal=option[1];
+							}
               a[i]->set_velocity(cur.get_velocity());
               int px = option[0];
               int py = cur.get_pos()[1]+option[1];
@@ -344,7 +331,7 @@ vector<Vehicle *> interaction_update(Road *r, vector<Vehicle *> a, vector<int> s
 
 
 
-void draw_cube(float px, float py, float length, float width, float height, string col)
+void draw_cube(float px, float py, float length, float width, float height, string col, int diag=0)
 {
 	int rgb=stoi(col);
 	float col_b = ((1.0)*(rgb%10))/10;
@@ -354,9 +341,11 @@ void draw_cube(float px, float py, float length, float width, float height, stri
 	float col_r = ((1.0)*(rgb%10))/10;
 
 	glLoadIdentity();
-	glTranslatef(-10.0f, -10.0f, -40.0f);
-	glRotatef(-45.0f,1.0f,0.0f,0.0f);
-	glRotatef(45.0f,0.0f,0.0f,1.0f);
+	// glTranslatef(-10.0f, -10.0f, -40.0f);
+	// glRotatef(45.0f,0.0f,0.0f,1.0f);
+	glTranslatef(0.0f, -10.0f, -40.0f);
+	glRotatef(-65.0f,1.0f,0.0f,0.0f);
+	glRotatef(65.0f,0.0f,0.0f,1.0f);
   glBegin(GL_QUADS);				// start drawing the cube.
 	//top of cube
   glColor3f(col_r*1.0f,col_g*1.0f,col_b*1.0f);
@@ -446,9 +435,12 @@ void DrawGLScene()
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 	glLoadIdentity();
 
-	glTranslatef(-10.0f, -10.0f, -40.0f);
-	glRotatef(-45.0f,1.0f,0.0f,0.0f);
-	glRotatef(45.0f,0.0f,0.0f,1.0f);
+	// glTranslatef(-10.0f, -10.0f, -40.0f);
+	// glRotatef(-45.0f,0.0f,0.0f,1.0f);
+	// glRotatef(45.0f,0.0f,0.0f,1.0f);
+	glTranslatef(0.0f, -10.0f, -40.0f);
+	glRotatef(-65.0f,1.0f,0.0f,0.0f);
+	glRotatef(65.0f,0.0f,0.0f,1.0f);
 	glBegin(GL_QUADS);
   glColor3f(0.2f , 0.2f, 0.2f);
   glVertex3f(0.0f,-1.0f,0.0f);
@@ -472,7 +464,7 @@ void DrawGLScene()
   glVertex3f(signal_dist*1.0f,-2.0f,3.0f);
   glEnd();
 
-	usleep(250000);//sleep for 0.25 second
+	usleep(300000);//sleep for 0.25 second
 
 	////////////To make vehicles enter
 	int max_no_vehicles;
@@ -565,8 +557,14 @@ void DrawGLScene()
           string col=a[i]->get_color();
           if(px>=0 && px<r->get_width())
             {
-              draw_cube(px,py,length,width,height,col);
-              // cout<<height<<endl;
+							if(a[i]->am_i_straight)
+							{
+								draw_cube(px,py,length,width,height,col);
+							}
+							else
+							{
+								draw_cube(px,py,)
+							}
             }
         }
     }

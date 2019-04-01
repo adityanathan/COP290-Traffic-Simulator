@@ -21,19 +21,21 @@ private:
         vector<int> pos;
         vector<int> velocity;
         char display;
-        bool is_accident;
         // In xml file when multiple vehicles are defined simultaneously, in the simulation they will
         //side by side. If no of vehicles exceeds road width, it will throw an error.
 
         //All vehicles will be spawned at the starting line.
 public:
+				bool am_i_straight;
+				int opengl_diagonal;
+
         Vehicle(Road *rd, int len, int wid, int h, string col, int max_sp, int acc, char disp, int i, vector<int> position);
 
         Vehicle(const Vehicle &obj);
 
         int get_length();
         int get_width();
-	int get_height();
+				int get_height();
         int get_id();
         string get_color();
         int get_max_speed();

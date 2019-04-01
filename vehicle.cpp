@@ -15,7 +15,6 @@ using namespace std;
                 velocity.push_back(max_sp);
                 velocity.push_back(0);
                 display = disp;
-                is_accident = false;
         }
 
         Vehicle::Vehicle(const Vehicle &obj)
@@ -31,7 +30,6 @@ using namespace std;
                 pos = obj.pos;
                 velocity = obj.velocity;
                 display = obj.display;
-                is_accident = obj.is_accident;
         }
         int Vehicle::get_length() {return length;}
         int Vehicle::get_width() {return width;}
@@ -43,7 +41,6 @@ using namespace std;
         vector<int> Vehicle::get_pos() {return pos;}
         vector<int> Vehicle::get_velocity() {return velocity;}
         int Vehicle::get_display_char() {return display;}
-        int Vehicle::get_accident_truth() {return is_accident;}
 
         void Vehicle::set_acceleration(int acc) {acceleration=acc;}
         void Vehicle::set_pos(int x, int y) {pos[0]=x; pos[1]=y;}
