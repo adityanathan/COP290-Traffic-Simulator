@@ -13,61 +13,60 @@
 
 
     <Vehicles>
+        <vehicle>
+                <type>Bike</type>
+                <color>999</color>
+                <display>b</display>
+                <length>2</length>
+                <width>1</width>
+                <height>1</height>
+                <max_v>2</max_v>
+                <acc>1</acc>
+        </vehicle>
 
-			<vehicle>
-					<type>Bike</type>
-					<color>999</color>
-					<display>b</display>
-					<length>2</length>
-					<width>1</width>
-		<height>1</height>
-					<max_v>2</max_v>
-					<acc>1</acc>
-			</vehicle>
+        <vehicle>
+                <type>Bike</type>
+                <color>559</color>
+                <display>b</display>
+                <length>2</length>
+                <width>1</width>
+                <height>1</height>
+                <max_v>2</max_v>
+                <acc>1</acc>
+        </vehicle>
 
-			<vehicle>
-					<type>Bike</type>
-					<color>559</color>
-					<display>b</display>
-					<length>2</length>
-					<width>1</width>
-		<height>1</height>
-					<max_v>2</max_v>
-					<acc>1</acc>
-			</vehicle>
+        <vehicle>
+                <type>Bike</type>
+                <color>955</color>
+                <display>b</display>
+                <length>2</length>
+                <width>1</width>
+                <height>1</height>
+                <max_v>2</max_v>
+                <acc>1</acc>
+        </vehicle>
 
-			<vehicle>
-					<type>Bike</type>
-					<color>955</color>
-					<display>b</display>
-					<length>2</length>
-					<width>1</width>
-		<height>1</height>
-					<max_v>2</max_v>
-					<acc>1</acc>
-			</vehicle>
+        <vehicle>
+                <type>Bike</type>
+                <color>595</color>
+                <display>b</display>
+                <length>2</length>
+                <width>1</width>
+                <height>1</height>
+                <max_v>2</max_v>
+                <acc>1</acc>
+        </vehicle>
 
-			<vehicle>
-					<type>Bike</type>
-					<color>595</color>
-					<display>b</display>
-					<length>2</length>
-					<width>1</width>
-		<height>1</height>
-					<max_v>2</max_v>
-					<acc>1</acc>
-			</vehicle>
-
-			<vehicle>
-					<type>Bike</type>
-					<color>855</color>
-					<display>b</display>
-					<length>2</length>
-					<width>1</width>
-		<height>1</height>
-					<max_v>2</max_v>
-					<acc>1</acc>
-			</vehicle>
+        <vehicle>
+                <type>Bike</type>
+                <color>855</color>
+                <display>b</display>
+                <length>2</length>
+                <width>1</width>
+                <height>1</height>
+                <max_v>2</max_v>
+                <acc>1</acc>
+        </vehicle>
 
         <vehicle>
             <type>Car</type>
@@ -75,7 +74,7 @@
             <display>C</display>
             <length>2</length>
             <width>2</width>
-	    <height>1</height>
+	        <height>1</height>
             <max_v>2</max_v>
             <acc>1</acc>
         </vehicle>
@@ -86,7 +85,7 @@
             <display>C</display>
             <length>2</length>
             <width>2</width>
-	    <height>1</height>
+	        <height>1</height>
             <max_v>2</max_v>
             <acc>1</acc>
         </vehicle>
@@ -97,7 +96,7 @@
             <display>b</display>
             <length>2</length>
             <width>1</width>
-	    <height>1</height>
+	        <height>1</height>
             <max_v>2</max_v>
             <acc>1</acc>
         </vehicle>
@@ -108,8 +107,8 @@
             <display>b</display>
             <length>2</length>
             <width>1</width>
-	    <height>1</height>
- 	    <max_v>3</max2v>
+	        <height>1</height>
+ 	        <max_v>3</max2v>
             <acc>1</acc>
         </vehicle>
 
@@ -119,8 +118,8 @@
             <display>b</display>
             <length>2</length>
             <width>1</width>
-	    <height>1</height>
-	    <max_v>3</max2v>
+	        <height>1</height>
+	        <max_v>3</max2v>
             <acc>1</acc>
         </vehicle>
 
@@ -130,7 +129,7 @@
             <display>b</display>
             <length>2</length>
             <width>1</width>
-	    <height>1</height>
+	        <height>1</height>
             <max_v>2</max_v>
             <acc>1</acc>
         </vehicle>
@@ -141,7 +140,7 @@
             <display>B</display>
             <length>3</length>
             <width>2</width>
-	    <height>1</height>
+	        <height>1</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
@@ -152,7 +151,7 @@
             <display>C</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>2</length>
             <width>2</width>
-	    <height>1</height>
+	        <height>1</height>
             <max_v>2</max_v>
             <acc>1</acc>
         </vehicle>
@@ -163,7 +162,7 @@
             <display>b</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>2</length>
             <width>1</width>
-	    <height>1</height>
+	        <height>1</height>
             <max_v>2</max_v>
             <acc>1</acc>
         </vehicle>
@@ -174,7 +173,7 @@
             <display>T</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>4</length>
             <width>2</width>
-	    <height>1</height>
+	        <height>1</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
@@ -185,34 +184,32 @@
             <display>B</display>    <!-- Type determines the character to be displayed on terminal-->
             <length>3</length>
             <width>2</width>
-	    <height>1</height>
+	        <height>1</height>
             <max_v>1</max_v>
             <acc>1</acc>
         </vehicle>
 
-				<vehicle>
-						<type>Bike</type>
-						<color>559</color>
-						<display>b</display>
-						<length>2</length>
-						<width>1</width>
-			<height>1</height>
-						<max_v>2</max_v>
-						<acc>1</acc>
-				</vehicle>
+        <vehicle>
+                <type>Bike</type>
+                <color>559</color>
+                <display>b</display>
+                <length>2</length>
+                <width>1</width>
+                <height>1</height>
+                <max_v>2</max_v>
+                <acc>1</acc>
+        </vehicle>
 
-				<vehicle>
-						<type>Bike</type>
-						<color>559</color>
-						<display>b</display>
-						<length>2</length>
-						<width>1</width>
-			<height>1</height>
-						<max_v>2</max_v>
-						<acc>1</acc>
-				</vehicle>
+        <vehicle>
+                <type>Bike</type>
+                <color>559</color>
+                <display>b</display>
+                <length>2</length>
+                <width>1</width>
+                <height>1</height>
+                <max_v>2</max_v>
+                <acc>1</acc>
+        </vehicle>
 
-        </Vehicles>
-
-
+    </Vehicles>
 </road>
