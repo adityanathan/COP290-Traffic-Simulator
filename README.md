@@ -1,5 +1,7 @@
 # Traffic Simulator
 
+Website: [adityanathan.github.io/projects](https://adityanathan.github.io/projects)
+
 ## Pre-requisites:
 
 - OpenGL
